@@ -15,7 +15,7 @@ library(units)
 #https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
 
 #Aqui vamos incluir um raio de 20 km alem 
-#do ponto de accesso para o garimpo em 1985.
+#do ponto de accesso para o Garimpo do Lourenço em 1985.
 garimpo <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)

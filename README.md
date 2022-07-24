@@ -6,3 +6,11 @@ Mineração e desmatamento no Amapá. Mining and deforestation in Amapá.
 Código de [R](https://cran.r-project.org/) e dados para calcular 
 métricas de paisagem associadas com a exploração de recursos minerários. 
 
+Pacotes necessarios: 
+library(sf)
+library(tidyverse)
+library(landscapemetrics)
+library(terra)
+library(readxl)
+library(mapview)
+library(units)
