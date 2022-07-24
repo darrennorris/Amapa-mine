@@ -16,6 +16,7 @@ library(units)
 
 #Aqui vamos incluir um raio de 20 km alem 
 #do ponto de accesso para o Garimpo do Lourenço em 1985.
+#Isso repesentar uma area quadrado de 40 x 40 km (1600 km2).
 garimpo <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
@@ -24,7 +25,7 @@ sf_garimpo <- st_as_sf(garimpo,
                coords = c("coord_x", "coord_y"),
             crs = 4326)
 plot(sf_garimpo)
-mapview(sf_garimpo) #verifcar com mapa de base (OpenStreetMap)
+mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
 
 #Raio de 20 km (20000 metros)
 crs_equal <- "+proj=aea +lat_1=-5 +lat_2=-42 +lat_0=-32 +lon_0=-60 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs"
@@ -34,7 +35,7 @@ mapview(sf_garimpo_20km)
 poly_area_m2 <- st_area(sf_garimpo_20km)
 set_units(poly_area_m2, km^2)
 
-#Agora vamos seleccionar espaco que preciso 
+#Agora vamos selecionar espaco que preciso 
 #arquivo grande
 raster_in <- "data\\raster\\Mapbiomas_AP_equalarea\\ea_cover_AP_1985.tif"
 r1 <- rast(raster_in)
