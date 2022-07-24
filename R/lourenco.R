@@ -29,9 +29,11 @@ mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
 
 #Raio de 20 km (20000 metros)
 # EPSG: 102033 South America Albers Equal Area Conic
+# Albers é indicado para cálculo de áreas onde 
+# o retângulo envolvente é maior que um fuso UTM.
 crs_equal <- "+proj=aea +lat_1=-5 +lat_2=-42 +lat_0=-32 +lon_0=-60 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs"
-sf_garimpo_ea <- st_transform(sf_garimpo, crs = crs_equal)
-sf_garimpo_20km <- st_buffer(sf_garimpo_ea, dist=20000)
+sf_garimpo_aea <- st_transform(sf_garimpo, crs = crs_equal)
+sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
 mapview(sf_garimpo_20km)
 poly_area_m2 <- st_area(sf_garimpo_20km)
 set_units(poly_area_m2, km^2)
