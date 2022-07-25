@@ -16,8 +16,6 @@ Este exemplo tem como base teórica o modelo
 de habitat (fragmentos). 
 
 
-
-
 ## Conteúdo
 Os dados aqui apresentados (gráficos, mapas) representam conteúdo do 
 domínio público, disponibilizados pelos institutos, órgãos e entidades
@@ -27,7 +25,14 @@ representar versões ou produtos  finais e não devem ser apresentados/relatados
 
 Os mapas e cartogramas ficam na pasta [figures](https://github.com/darrennorris/Amapa-mine/tree/main/figures) (formato .png e .tif), dados geoespaciais "vector" na pasta [vector](https://github.com/darrennorris/Amapa-mine/tree/main/data/vector) (formato shapefile e GPKG) e "raster" na pasta [raster](https://github.com/darrennorris/Amapa-mine/tree/main/data/raster). 
 
-Pacotes necessarios: 
+
+- [Área de estudo](#areadestudo)
+  * [Ponto geografico](#Ponto)
+  * [Educação e maternidade](#educacao)
+- [Mineração](#mineracao)
+
+Pacotes necessarios:
+```{r}
 library(sf)
 library(tidyverse)
 library(landscapemetrics)
@@ -35,12 +40,7 @@ library(terra)
 library(readxl)
 library(mapview)
 library(units)
-
-- [Área de estudo](#areadestudo)
-  * [Ponto geografico](#Ponto)
-  * [Educação e maternidade](#educacao)
-- [Mineração](#mineracao)
-
+```
 
 <a id="areadestudo"></a>
 ## Área de estudo
@@ -60,6 +60,8 @@ Aqui vamos incluir um raio de 20 km além do ponto de acesso para
 o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
 
+```{r}
+
 garimpo <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
@@ -69,14 +71,17 @@ sf_garimpo <- st_as_sf(garimpo,
             crs = 4326)
 plot(sf_garimpo)
 mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
+```
 
 Como as análises da paisagem associadas com o modelo 
 "mancha-corredor-matriz" depende de uma classificação categórica deve 
 optar para sistema de coordenados projetados com área igual e 
-com unidade em metros.
-
- 
-Temos um raio de 20 km, que é um area geografica 
+com unidade em metros. Temos um raio de 20 km, que é um area geografica 
 onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
 Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N:
 EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
+```{r}
+sf_garimpo_aea <- st_transform(sf_garimpo, crs = 31976)
+sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
+mapview(sf_garimpo_20km)
+```
