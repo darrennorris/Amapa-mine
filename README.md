@@ -15,8 +15,16 @@ Este exemplo tem como base teórica o modelo
 "mancha-corredor-matriz" - uma representação da paisagem em manchas 
 de habitat (fragmentos). 
 
-
 ## Conteúdo
+
+- [Organização](#organizacao)
+- [Área de estudo](#areadestudo)
+  * [Ponto geografico](#Ponto)
+  * [Educação e maternidade](#educacao)
+- [Mineração](#mineracao)
+
+<a id="organizacao"></a>
+## Organização
 Os dados aqui apresentados (gráficos, mapas) representam conteúdo do 
 domínio público, disponibilizados pelos institutos, órgãos e entidades
 federais, estaduais e privados ([IBGE](https://www.ibge.gov.br/),  [MapBiomas](https://mapbiomas.org/), [Agência Nacional de Mineração](https://dados.gov.br/dataset/sistema-de-informacoes-geograficas-da-mineracao-sigmine) ). O conteúdo está aqui apresentado para divulgação ampla, respetiando as obrigações de transparência, assim para agilizar e 
@@ -25,11 +33,6 @@ representar versões ou produtos  finais e não devem ser apresentados/relatados
 
 Os mapas e cartogramas ficam na pasta [figures](https://github.com/darrennorris/Amapa-mine/tree/main/figures) (formato .png e .tif), dados geoespaciais "vector" na pasta [vector](https://github.com/darrennorris/Amapa-mine/tree/main/data/vector) (formato shapefile e GPKG) e "raster" na pasta [raster](https://github.com/darrennorris/Amapa-mine/tree/main/data/raster). 
 
-
-- [Área de estudo](#areadestudo)
-  * [Ponto geografico](#Ponto)
-  * [Educação e maternidade](#educacao)
-- [Mineração](#mineracao)
 
 Pacotes necessarios:
 ```{r}
