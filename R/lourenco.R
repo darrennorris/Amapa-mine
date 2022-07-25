@@ -32,6 +32,22 @@ mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
 # Albers é indicado para cálculo de áreas onde 
 # o retângulo envolvente é maior que um fuso UTM.
 crs_equal <- "+proj=aea +lat_1=-5 +lat_2=-42 +lat_0=-32 +lon_0=-60 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs"
+crs_equal_wkt <- "PROJCS[\"South_America_Albers_Equal_Area_Conic\",\n 
+GEOGCS[\"GCS_South_American_1969\", \n 
+DATUM[\"South_American_Datum_1969\",\n 
+SPHEROID[\"GRS_1967_Truncated\",6378160,298.25]],\n 
+PRIMEM[\"Greenwich\",0],\n 
+UNIT[\"Degree\",0.017453292519943295]],\n 
+PROJECTION[\"Albers_Conic_Equal_Area\"],\n 
+PARAMETER[\"False_Easting\",0],\n 
+PARAMETER[\"False_Northing\",0],\n
+PARAMETER[\"longitude_of_center\",-60],\n
+PARAMETER[\"Standard_Parallel_1\",-5],\n 
+PARAMETER[\"Standard_Parallel_2\",-42],\n 
+PARAMETER[\"latitude_of_center\",-32],\n 
+UNIT[\"Meter\",1],\n 
+AUTHORITY[\"EPSG\",\"102033\"]]"
+
 sf_garimpo_aea <- st_transform(sf_garimpo, crs = crs_equal)
 sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
 mapview(sf_garimpo_20km)
