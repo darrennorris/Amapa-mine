@@ -11,7 +11,7 @@ Objetivo é calcular métricas de paisagem e descrever a composição e a config
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
-As análises aqui apresentados tem como base teórica o modelo 
+Este exemplo tem como base teórica o modelo 
 "mancha-corredor-matriz" - uma representação da paisagem em manchas 
 de habitat (fragmentos). 
 
