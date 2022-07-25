@@ -78,8 +78,8 @@ Como as análises da paisagem associadas com o modelo
 optar para sistema de coordenados projetados com área igual e 
 com unidade em metros. Temos um raio de 20 km, que é um area geografica 
 onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
-Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N:
-EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
+Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N, especificamente EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
+
 ```{r}
 sf_garimpo_aea <- st_transform(sf_garimpo, crs = 31976)
 sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
