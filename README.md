@@ -23,7 +23,9 @@ de habitat (fragmentos).
   * [Espaço](#espaco)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
+  * [Métricas para as classes](#met-classes)
 - [Quais métricas devo escolher?](#quais)
+
 
 <a id="organizacao"></a>
 ## Organização
@@ -127,9 +129,48 @@ landscape (métricas para a paisagem como um todo).
 <a id="met-paisagem"></a>
 ### Métricas para a paisagem
 
+Vamos começar avaliando a área total da paisagem (área) de estudo.
+
 ```{r, warning = FALSE}
+area.total <- lsm_l_ta(r1985) 
+area.total #160264 Hectares
+
+```
+Agora vamos ver a quantidade total de borda (te= “total
+edge”).
+
+```{r, warning = FALSE}
+te <- lsm_l_te(r1985)
+te # 547140 metros
+
+```
+Total de borda mede a configuração da paisagem porque uma paisagem 
+altamente fragmentada terá muitas bordas. No entanto, a borda total 
+é uma medida absoluta, dificultando comparações entre paisagens com  
+áreas totais diferentes. Mas pode ser aplicado para comparar a 
+configuração na mesma paisagem em anos diferentes. 
+
+Agora vamos ver a densidade de Borda (“Edge Density”). 
+Densidade de Borda mede a configuração da paisagem porque uma paisagem 
+altamente fragmentada terá valores mais altas. "Densidade" é uma medida 
+adequado para comparacoes de paisagens com áreas totais diferentes.
+
+```{r, warning = FALSE}
+ed <- lsm_l_ed(r1985) 
+ed #3.41 metros por hectare
+
+```
+
+<a id="met-classes"></a>
+### Métricas para as classes
+
+
+
+```{r, warning = FALSE}
+
 #Area de cada class em hectares
 lsm_c_ca(r1985, directions = 8) 
+
 ```
 
 Para entender os resultados podemos acrescentar nomes dos valores.
