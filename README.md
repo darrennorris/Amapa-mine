@@ -20,7 +20,7 @@ de habitat (fragmentos).
 - [Organização](#organizacao)
 - [Área de estudo](#areadestudo)
   * [Ponto geografico](#Ponto)
-  * [Educação e maternidade](#educacao)
+  * [Espaço](#espaco)
 - [Mineração](#mineracao)
 
 <a id="organizacao"></a>
@@ -76,9 +76,9 @@ plot(sf_garimpo)
 mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
 ```
 
-Como as análises da paisagem associadas com o modelo 
-"mancha-corredor-matriz" depende de uma classificação categórica deve 
-optar para sistema de coordenados projetados com área igual e 
+As análises da paisagem com o modelo "mancha-corredor-matriz" depende 
+de uma classificação categórica. Portanto, deve 
+optar para uma sistema de coordenados projetados, com área igual e 
 com unidade em metros. Temos um raio de 20 km, que é um area geografica 
 onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
 Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N, especificamente EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
@@ -87,4 +87,59 @@ Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N, especi
 sf_garimpo_aea <- st_transform(sf_garimpo, crs = 31976)
 sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
 mapview(sf_garimpo_20km)
+```
+
+<a id="espaco"></a>
+###Espaço
+
+Agora vamos olhar o espaco que preciso 
+
+```{r}
+raster_in <- "data\\raster\\Mapbiomas_cover_lourenco_utm\\utm_cover_AP_lorenco_1985.tif"
+r1985 <- rast(raster_in)
+
+```
+Agora podemos visualizr.
+
+```{r, warning = FALSE}
+#Visualizar
+plot(r1985)
+```
+
+Quais metricas dev escholare?
+
+
+#Calculo de metricas
+
+```{r, warning = FALSE}
+check_landscape(r1985)
+#  layer crs    units   class n_classes OK
+#  1  projected   m   integer         7  v
+```
+
+Quai metricas deve escholer?
+
+
+Calculo
+
+```{r, warning = FALSE}
+#Area de cada class em hectares
+lsm_c_ca(r1985, directions = 8) 
+```
+
+Para entender os resultados podemos acrescentar nomes dos valores.
+Arquivo de legenda.
+```{r, warning = FALSE}
+mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
+
+```
+
+Agora os resultados juntos com a legenda para cada class.
+
+```{r, warning = FALSE}
+lsm_c_ca(r1985, directions = 8) %>% 
+  left_join(mapvals, by = c("class" = "aid"))
+#Numero de fragmentos (patches)
+lsm_c_np(r1985, directions = 8) %>% 
+  left_join(mapvals, by = c("class" = "aid"))
 ```
