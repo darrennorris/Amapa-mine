@@ -21,7 +21,9 @@ de habitat (fragmentos).
 - [Área de estudo](#areadestudo)
   * [Ponto geografico](#Ponto)
   * [Espaço](#espaco)
-- [Mineração](#mineracao)
+- [Calculo de métricas?](#primeiros)
+  * [Métricas para a paisagem](#met-paisagem)
+- [Quais métricas devo escolher?](#quais)
 
 <a id="organizacao"></a>
 ## Organização
@@ -107,21 +109,23 @@ Agora podemos visualizar.
 plot(r1985)
 ```
 
-Quais métricas devo escolher?
+<a id="primeiros"></a>
+## Calculo de métricas
 
-
-#Calculo de metricas
-
+Precisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
 check_landscape(r1985)
 #  layer crs    units   class n_classes OK
 #  1  projected   m   integer         7  v
 ```
+Tudo certo (veja a coluna do OK!)!
 
-Quai metricas deve escholer?
+Vamos olhar alguns exemplos para cada nível da análise: patch (para a 
+mancha ou fragmento), class (métricas por classe ou tipo de habiat) e 
+landscape (métricas para a paisagem como um todo).
 
-
-Calculo
+<a id="met-paisagem"></a>
+### Métricas para a paisagem
 
 ```{r, warning = FALSE}
 #Area de cada class em hectares
@@ -144,3 +148,6 @@ lsm_c_ca(r1985, directions = 8) %>%
 lsm_c_np(r1985, directions = 8) %>% 
   left_join(mapvals, by = c("class" = "aid"))
 ```
+
+<a id="quais"></a>
+## Quais métricas devo escolher?
