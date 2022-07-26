@@ -89,6 +89,7 @@ sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
 mapview(sf_garimpo_20km)
 ```
 
+
 <a id="espaco"></a>
 ###Espaço
 
