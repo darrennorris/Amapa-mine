@@ -91,7 +91,7 @@ mapview(sf_garimpo_20km)
 
 
 <a id="espaco"></a>
-###Espaço
+### Espaço
 
 Agora vamos olhar o espaco que preciso 
 
