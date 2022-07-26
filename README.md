@@ -100,14 +100,14 @@ raster_in <- "data\\raster\\Mapbiomas_cover_lourenco_utm\\utm_cover_AP_lorenco_1
 r1985 <- rast(raster_in)
 
 ```
-Agora podemos visualizr.
+Agora podemos visualizar.
 
 ```{r, warning = FALSE}
 #Visualizar
 plot(r1985)
 ```
 
-Quais metricas dev escholare?
+Quais métricas devo escolher?
 
 
 #Calculo de metricas
