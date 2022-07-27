@@ -209,8 +209,8 @@ Vamos calcular o tamanho de cada mancha agora.
 mancha_area <- lsm_p_area(r1985) # 630 manchas
 
 ```
-Agora queremos saber o tamanho da maior mancha, e portanto o 
-tamanho da maior mancha de mineração.
+Agora queremos saber o tamanho da maior mancha em cada class, e 
+portanto o tamanho da maior mancha de mineração.
 
 ```{r, warning = FALSE}
 mancha_area %>% 
