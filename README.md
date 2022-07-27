@@ -8,9 +8,6 @@ métricas de paisagem associadas com a exploração de recursos minerários.
 
 Objetivo é calcular métricas de paisagem e descrever a composição e a configuração da paisagem no entorno do Garimpo do Lourenço.
 
-
-
-
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
@@ -73,7 +70,6 @@ o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
 
 ```{r}
-
 garimpo <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
@@ -108,9 +104,21 @@ Este vez a entrada de dados espaciais seria atraves a importação de
 um raster (arquivo de .tif). Lembre-se, para facilitar os dados deve 
 ficar no mesmo diretório do seu código 
 (verifique com <code>getwd()</code>). 
+
+
+```{r}
+#
+r1985 <- rast("utm_cover_AP_lorenco_1985.tif")
+
+```
 Ou use o command <code>file.choose()</code>, que faz a busca 
 para arquivos. 
 
+```{r}
+r1985 <- rast(file.choose())
+```
+
+Ou digitar o endereço do arquivo.
 
 ```{r}
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
@@ -118,7 +126,7 @@ r1985 <- rast(raster_in)
 
 ```
 
-Agora podemos visualizar.
+Agora o arquivo foi importado podemos visualizar.
 
 ```{r, warning = FALSE}
 #Visualizar
