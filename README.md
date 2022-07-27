@@ -125,7 +125,7 @@ check_landscape(r1985)
 #  layer crs    units   class n_classes OK
 #  1  projected   m   integer         7  v
 ```
-Tudo certo (veja a coluna do "OK"")!
+Tudo certo (veja a coluna do "OK")!
 
 
 <a id="met-paisagem"></a>
