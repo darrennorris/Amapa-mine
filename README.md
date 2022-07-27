@@ -89,8 +89,8 @@ onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2
 Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N, especificamente EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
 
 ```{r}
-sf_garimpo_aea <- st_transform(sf_garimpo, crs = 31976)
-sf_garimpo_20km <- st_buffer(sf_garimpo_aea, dist=20000)
+sf_garimpo_utm <- st_transform(sf_garimpo, crs = 31976)
+sf_garimpo_20km <- st_buffer(sf_garimpo_utm, dist=20000)
 mapview(sf_garimpo_20km)
 ```
 
