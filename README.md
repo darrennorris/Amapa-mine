@@ -8,6 +8,9 @@ métricas de paisagem associadas com a exploração de recursos minerários.
 
 Objetivo é calcular métricas de paisagem e descrever a composição e a configuração da paisagem no entorno do Garimpo do Lourenço.
 
+
+
+
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
@@ -108,18 +111,13 @@ ficar no mesmo diretório do seu código
 Ou use o command <code>file.choose()</code>, que faz a busca 
 para arquivos. 
 
-```{r, echo=FALSE, include=FALSE}
+
+```{r}
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
 
 ```
 
-
-```{r, eval=FALSE, echo=TRUE}
-
-r1985 <- rast(utm_cover_AP_lorenco_1985.tif)
-
-```
 Agora podemos visualizar.
 
 ```{r, warning = FALSE}
