@@ -110,6 +110,7 @@ Agora podemos visualizar.
 ```{r, warning = FALSE}
 #Visualizar
 plot(r1985)
+
 ```
 
 <a id="primeiros"></a>
