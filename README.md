@@ -207,6 +207,7 @@ Vamos calcular o tamanho de cada mancha agora.
 
 ```{r, warning = FALSE}
 mancha_area <- lsm_p_area(r1985) # 630 manchas
+mancha_area
 
 ```
 Agora queremos saber o tamanho da maior mancha em cada class, e 
@@ -222,3 +223,20 @@ summarise(max_ha = max(value))
 
 <a id="quais"></a>
 ## Quais métricas devo escolher?
+
+A decisão deve ser tomada com base em uma combinação de fatores.
+Incluindo os fatores como: base teórica, considerações estatísticas, 
+relevância para o objetivo/hipótese e a escala e heterogeneidade 
+na paisagem de estudo.
+
+Queremos caracterizar áreas de mineração na paisagem, e aqui vamos 
+olhar uma paisagem em um momento do tempo. Então as métricas 
+para a paisagem como todo não tem relevância.
+
+Total area, Percentage of landscape, mean class area, number of patches, 
+range (min, max), 
+
+list_lsm(level = "class", type = "aggregation metric")
+list_lsm(level = "class", type = "area and edge metric")
+
+
