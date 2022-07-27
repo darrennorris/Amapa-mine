@@ -115,7 +115,11 @@ plot(r1985)
 <a id="primeiros"></a>
 ## Calculo de métricas
 
-Precisamos verificar se o raster está no formato correto.
+Vamos olhar alguns exemplos para cada nível da análise: patch (para a 
+mancha ou fragmento), class (métricas por classe ou tipo de habiat) e 
+landscape (métricas para a paisagem como um todo).
+
+Primeiro, pecisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
 check_landscape(r1985)
 #  layer crs    units   class n_classes OK
@@ -123,9 +127,6 @@ check_landscape(r1985)
 ```
 Tudo certo (veja a coluna do "OK"")!
 
-Vamos olhar alguns exemplos para cada nível da análise: patch (para a 
-mancha ou fragmento), class (métricas por classe ou tipo de habiat) e 
-landscape (métricas para a paisagem como um todo).
 
 <a id="met-paisagem"></a>
 ### Métricas para a paisagem
