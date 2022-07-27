@@ -160,7 +160,7 @@ area.total <- lsm_l_ta(r1985)
 area.total #160264 Hectares
 
 ```
-Agora vamos ver a quantidade total de borda (te= “total
+Agora vamos ver a distância total de borda (te= “total
 edge”).
 
 ```{r, warning = FALSE}
