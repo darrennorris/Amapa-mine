@@ -24,6 +24,7 @@ de habitat (fragmentos).
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
   * [Métricas para as classes](#met-classes)
+  * [Métricas para as manchas](#met-manchas)
 - [Quais métricas devo escolher?](#quais)
 
 
@@ -120,7 +121,7 @@ check_landscape(r1985)
 #  layer crs    units   class n_classes OK
 #  1  projected   m   integer         7  v
 ```
-Tudo certo (veja a coluna do OK!)!
+Tudo certo (veja a coluna do "OK"")!
 
 Vamos olhar alguns exemplos para cada nível da análise: patch (para a 
 mancha ou fragmento), class (métricas por classe ou tipo de habiat) e 
@@ -164,30 +165,56 @@ ed #3.41 metros por hectare
 <a id="met-classes"></a>
 ### Métricas para as classes
 
-
+Area de cada class em hectares.
 
 ```{r, warning = FALSE}
-
-#Area de cada class em hectares
-lsm_c_ca(r1985, directions = 8) 
+lsm_c_ca(r1985) 
 
 ```
-
-Para entender os resultados podemos acrescentar nomes dos valores.
+Como tem varios classes é dificil de interpretar os resultados porque 
+os numeros (3, 4, 11.....) não tem uma referncia do mundo real.
+Para entender os resultados podemos acrescentar nomes dos valores. 
+Ou seja incluir uma legenda com os nomes. Para isso precisamos outro 
+arquivo com os nomes.
 Arquivo de legenda.
 ```{r, warning = FALSE}
 mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
 
 ```
 
-Agora os resultados juntos com a legenda para cada class.
+Agora os resultados juntos com a legenda para cada class. Os valores 
+na coluna "class" nos resultados são as mesmas que tem na coluna "aid" 
+no objeto mapvals. Assim, podemos repetir, mas agora incluindo os 
+nomes para cada valor de class, com base na ligação (join) com ambos 
+as colunas. 
 
 ```{r, warning = FALSE}
+#Area de cada class em hectares.
 lsm_c_ca(r1985, directions = 8) %>% 
   left_join(mapvals, by = c("class" = "aid"))
+  
 #Numero de fragmentos (patches)
 lsm_c_np(r1985, directions = 8) %>% 
   left_join(mapvals, by = c("class" = "aid"))
+```
+
+<a id="met-manchas"></a>
+### Métricas para as manchas
+Vamos calcular o tamanho de cada mancha agora.
+
+```{r, warning = FALSE}
+mancha_area <- lsm_p_area(r1985) # 630 manchas
+
+```
+Agora queremos saber o tamanho da maior mancha, e portanto o 
+tamanho da maior mancha de mineração.
+
+```{r, warning = FALSE}
+mancha_area %>% 
+group_by(class) %>% 
+summarise(max_ha = max(value))
+# 30.8 hectares (class 15 = mineração)
+
 ```
 
 <a id="quais"></a>
