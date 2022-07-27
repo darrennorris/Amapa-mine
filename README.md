@@ -33,7 +33,7 @@ de habitat (fragmentos).
 Os dados aqui apresentados (gráficos, mapas) representam conteúdo do 
 domínio público, disponibilizados pelos institutos, órgãos e entidades
 federais, estaduais e privados ([IBGE](https://www.ibge.gov.br/),  [MapBiomas](https://mapbiomas.org/), [Agência Nacional de Mineração](https://dados.gov.br/dataset/sistema-de-informacoes-geograficas-da-mineracao-sigmine) ). O conteúdo está aqui apresentado para divulgação ampla, respetiando as obrigações de transparência, assim para agilizar e 
-facilitar o desenvolvimento técnico científco. O conteúdo não 
+facilitar ensino e o desenvolvimento técnico científco. O conteúdo não 
 representar versões ou produtos  finais e não devem ser apresentados/relatados/compartilhados/interpretados como conclusivos. 
 
 Os gráficos e mapas ficam na pasta [figures](https://github.com/darrennorris/Amapa-mine/tree/main/figures) (formato .png e .tif), dados geoespaciais "vector" na pasta [vector](https://github.com/darrennorris/Amapa-mine/tree/main/data/vector) (formato shapefile e GPKG) e "raster" na pasta [raster](https://github.com/darrennorris/Amapa-mine/tree/main/data/raster). 
@@ -87,7 +87,8 @@ de uma classificação categórica. Portanto, deve
 optar para uma sistema de coordenados projetados, com área igual e 
 com unidade em metros. Temos um raio de 20 km, que é um area geografica 
 onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
-Assim sendo, vamos adotar a sistema de coordenados projetados de UTM 22N, especificamente EPSG:31976 (SIRGAS 2000 / UTM zone 22N).
+Assim sendo, vamos adotar a sistema de coordenados projetados de 
+datum SIRGAS 2000, especificamente EPSG:31976 (SIRGAS 2000/UTM zone 22N).
 
 ```{r}
 sf_garimpo_utm <- st_transform(sf_garimpo, crs = 31976)
@@ -99,11 +100,21 @@ mapview(sf_garimpo_20km)
 <a id="espaco"></a>
 ### Espaço
 
-Agora vamos olhar o espaco que preciso 
+Agora vamos olhar o espaco que preciso. 
+Este vez a entrada de dados espaciais seria atraves a importação de 
+um raster (arquivo de .tif). Lembre-se, para facilitar se os dados estiverem no mesmo diretório do seu código (verifique
+com getwd()) 
+Ou use o command file.choose(), que faz a busca para arquivos. 
 
-```{r}
-raster_in <- "data\\raster\\Mapbiomas_cover_lourenco_utm\\utm_cover_AP_lorenco_1985.tif"
+```{r echo=F}
+raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
+
+```
+
+```{r, eval=F, echo=T}
+
+r1985 <- rast(utm_cover_AP_lorenco_1985.tif)
 
 ```
 Agora podemos visualizar.
@@ -225,20 +236,24 @@ summarise(max_ha = max(value))
 ## Quais métricas devo escolher?
 
 A decisão deve ser tomada com base em uma combinação de fatores.
-Incluindo os fatores como: base teórica, considerações estatísticas, 
+Incluindo tais fatores como: base teórica, considerações estatísticas, 
 relevância para o objetivo/hipótese e a escala e heterogeneidade 
 na paisagem de estudo.
 
 Queremos caracterizar áreas de mineração na paisagem, e aqui vamos 
-olhar uma paisagem, em um momento do tempo. Então as métricas 
+olhar somente uma paisagem, em um momento do tempo. Então as métricas 
 para a paisagem como todo não tem relevância.
 
-Estamos olhando uma class, portanto vamos incluir as métricas para 
-classes.
+Estamos olhando uma class (mineração), portanto vamos incluir as 
+métricas para classes.
 Total area, Percentage of landscape, mean class area, number of patches, 
 range (min, max), 
 
-list_lsm(level = "class", type = "aggregation metric")
+```{r, warning = FALSE}
+# métricas de composição para classes
 list_lsm(level = "class", type = "area and edge metric")
 
+# métricas de configuração para classes
+list_lsm(level = "class", type = "aggregation metric")
 
+```
