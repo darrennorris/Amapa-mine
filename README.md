@@ -19,7 +19,7 @@ de habitat (fragmentos).
 
 - [Organização](#organizacao)
 - [Área de estudo](#areadestudo)
-  * [Ponto geografico](#Ponto)
+  * [Ponto de referência](#Ponto)
   * [Espaço](#espaco)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
@@ -36,7 +36,7 @@ federais, estaduais e privados ([IBGE](https://www.ibge.gov.br/),  [MapBiomas](h
 facilitar o desenvolvimento técnico científco. O conteúdo não 
 representar versões ou produtos  finais e não devem ser apresentados/relatados/compartilhados/interpretados como conclusivos. 
 
-Os mapas e cartogramas ficam na pasta [figures](https://github.com/darrennorris/Amapa-mine/tree/main/figures) (formato .png e .tif), dados geoespaciais "vector" na pasta [vector](https://github.com/darrennorris/Amapa-mine/tree/main/data/vector) (formato shapefile e GPKG) e "raster" na pasta [raster](https://github.com/darrennorris/Amapa-mine/tree/main/data/raster). 
+Os gráficos e mapas ficam na pasta [figures](https://github.com/darrennorris/Amapa-mine/tree/main/figures) (formato .png e .tif), dados geoespaciais "vector" na pasta [vector](https://github.com/darrennorris/Amapa-mine/tree/main/data/vector) (formato shapefile e GPKG) e "raster" na pasta [raster](https://github.com/darrennorris/Amapa-mine/tree/main/data/raster). 
 
 
 Pacotes necessarios:
@@ -63,7 +63,8 @@ https://www.nature.com/articles/s41467-017-00557-w
 Para visualizar um exemplo:
 https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
 
-### Ponto
+<a id="ponto"></a>
+### Ponto de referência
 Aqui vamos incluir um raio de 20 km além do ponto de acesso para 
 o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
@@ -175,28 +176,28 @@ lsm_c_ca(r1985)
 ```
 Como tem varios classes é dificil de interpretar os resultados porque 
 os numeros (3, 4, 11.....) não tem uma referncia do mundo real.
-Para entender os resultados podemos acrescentar nomes dos valores. 
-Ou seja incluir uma legenda com os nomes. Para isso precisamos outro 
-arquivo com os nomes.
+Para entender os resultados podemos acrescentar nomes para os valores. 
+Ou seja incluir uma coluna de legenda com os nomes. Para isso 
+precisamos outro arquivo com os nomes.
 Arquivo de legenda.
 ```{r, warning = FALSE}
 mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
 
 ```
 
-Agora os resultados juntos com a legenda para cada class. Os valores 
-na coluna "class" nos resultados são as mesmas que tem na coluna "aid" 
-no objeto mapvals. Assim, podemos repetir, mas agora incluindo os 
-nomes para cada valor de class, com base na ligação (join) com ambos 
-as colunas. 
+Agora rodar de novo, com os resultados juntos com a legenda 
+para cada class. Os valores na coluna "class" nos resultados são as 
+mesmas que tem na coluna "aid" no objeto "mapvals", onde também 
+tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes 
+para cada valor de class, com base na ligação (join) entre as colunas. 
 
 ```{r, warning = FALSE}
-#Area de cada class em hectares.
-lsm_c_ca(r1985, directions = 8) %>% 
+#Area de cada class em hectares, incluindo os nomes para cada class
+lsm_c_ca(r1985) %>% 
   left_join(mapvals, by = c("class" = "aid"))
   
 #Numero de fragmentos (patches)
-lsm_c_np(r1985, directions = 8) %>% 
+lsm_c_np(r1985) %>% 
   left_join(mapvals, by = c("class" = "aid"))
 ```
 
