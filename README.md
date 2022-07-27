@@ -104,13 +104,14 @@ Agora vamos olhar o espaco que preciso.
 Este vez a entrada de dados espaciais seria atraves a importação de 
 um raster (arquivo de .tif). Lembre-se, para facilitar se os dados estiverem no mesmo diretório do seu código (verifique
 com getwd()) 
-Ou use o command file.choose(), que faz a busca para arquivos. 
+Ou use o command <code>file.choose()</code> , que faz a busca para arquivos. 
 
 ```{r, echo=FALSE}
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
 
 ```
+
 
 ```{r, eval=FALSE, echo=TRUE}
 
