@@ -1,9 +1,3 @@
----
-title: "Testfile"
-author: "Name"
-date: "`r Sys.Date()`"
----
-
 # Amapa-mine
 Mineração e desmatamento no Amapá. Mining and deforestation in Amapá.
 
