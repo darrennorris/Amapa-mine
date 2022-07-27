@@ -106,13 +106,13 @@ um raster (arquivo de .tif). Lembre-se, para facilitar se os dados estiverem no 
 com getwd()) 
 Ou use o command file.choose(), que faz a busca para arquivos. 
 
-```{r echo=F}
+```{r echo=FALSE}
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
 
 ```
 
-```{r, eval=F, echo=T}
+```{r, eval=FALSE, echo=TRUE}
 
 r1985 <- rast(utm_cover_AP_lorenco_1985.tif)
 
