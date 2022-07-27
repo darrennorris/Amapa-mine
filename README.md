@@ -230,9 +230,11 @@ relevância para o objetivo/hipótese e a escala e heterogeneidade
 na paisagem de estudo.
 
 Queremos caracterizar áreas de mineração na paisagem, e aqui vamos 
-olhar uma paisagem em um momento do tempo. Então as métricas 
+olhar uma paisagem, em um momento do tempo. Então as métricas 
 para a paisagem como todo não tem relevância.
 
+Estamos olhando uma class, portanto vamos incluir as métricas para 
+classes.
 Total area, Percentage of landscape, mean class area, number of patches, 
 range (min, max), 
 
