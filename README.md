@@ -83,6 +83,8 @@ plot(sf_acesso) # teste basica
 mapview(sf_acesso) #verificar com mapa de base (OpenStreetMap)
 ```
 
+<img src="figures/fig_garimpo_access.png" alt="accesspoint" width="200" height="400">
+
 <a id="ponto31976"></a>
 ### Ponto de referência (EPSG: 31976)
 As análises da paisagem com o modelo "mancha-corredor-matriz" depende 
