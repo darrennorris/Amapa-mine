@@ -22,7 +22,7 @@ de habitat (fragmentos).
 - [Área de estudo](#areadestudo)
   * [Ponto de referência (EPSG: 4326)](#ponto)
   * [Ponto de referência (EPSG: 31976)](#ponto31976)  
-  * [Espaço](#espaco)
+  * [MapBiomas cobertura de terra](#mapbiomas)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
   * [Métricas para as classes](#met-classes)
@@ -112,8 +112,8 @@ mapview(sf_acesso_20km) +
 ```
 <img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="260">
 
-<a id="espaco"></a>
-### Espaço
+<a id="mapbiomas"></a>
+### MapBiomas cobertura de terra
 
 Agora vamos olhar o espaco que preciso. 
 Arquivo de raster MapBiomas cobertura de terra ao redor do 
