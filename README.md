@@ -210,7 +210,7 @@ lsm_c_ca(r1985)
 ```
 Como tem varios classes é dificil de interpretar os resultados porque 
 os numeros (3, 4, 11.....) não tem uma referncia do mundo real.
-Para entender os resultados podemos acrescentar nomes para os valores. 
+Para entender os resultados, podemos acrescentar nomes para os valores. 
 Ou seja incluir uma coluna de legenda com os nomes. Para isso 
 precisamos outro arquivo com os nomes.
 Arquivo de legenda.
@@ -220,8 +220,8 @@ mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.
 ```
 
 Agora rodar de novo, com os resultados juntos com a legenda 
-para cada class. Os valores na coluna "class" nos resultados são as 
-mesmas que tem na coluna "aid" no objeto "mapvals", onde também 
+de cada class. Nos resultadosOs acima, os valores na coluna "class" 
+são as mesmas que tem na coluna "aid" no objeto "mapvals", onde também 
 tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes 
 para cada valor de class, com base na ligação (join) entre as colunas. 
 
@@ -277,5 +277,24 @@ list_lsm(level = "class", type = "area and edge metric")
 
 # métricas de configuração para a paisagem por classes
 list_lsm(level = "class", type = "aggregation metric")
+
+```
+
+Aqui vamos calcular todos as metricas por classe.
+
+```{r, warning = FALSE}
+# métricas de composição para a paisagem por classes
+metrics_comp <- calculate_lsm(r1985, level = "class", type = "area and edge metric")
+
+# métricas de configuração para a paisagem por classes
+metrics_config <- calculate_lsm(r1985, level = "class", type = "aggregation metric")
+
+```
+
+```{r, warning = FALSE}
+
+show_correlation(data = metrics_comp, method = "pearson", labels = TRUE)
+
+show_correlation(data = metrics_config, method = "pearson", labels = TRUE)
 
 ```
