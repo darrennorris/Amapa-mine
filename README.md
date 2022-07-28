@@ -163,7 +163,7 @@ r1985
 Agora que o arquivo foi importado, podemos visualizá- lo.
 
 ```{r, warning = FALSE}
-#Visualizar
+#Visualizar para verificar
 #Gradiente de cores padrao nao corresponde 
 #ao mundo real (por exemplo verde não é floresta)
 plot(r1985) 
