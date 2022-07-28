@@ -110,7 +110,7 @@ sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
 mapview(sf_acesso_20km) + 
   mapview(sf_acesso_utm, color = "black", col.regions = "yellow")
 ```
-<img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="300">
+<img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="280">
 
 <a id="espaco"></a>
 ### Espaço
