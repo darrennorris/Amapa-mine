@@ -258,6 +258,19 @@ lsm_c_ca(r1985) %>%
 #Numero de fragmentos (patches)
 lsm_c_np(r1985) %>% 
   left_join(mapvals, by = c("class" = "aid"))
+  
+# Maior numero de manchas em classes de cobertura classificadas como 
+# pasto (pasture) e formação campestre (grassland).
+
+#  layer level class    id metric value class_description  group_description
+#     1 class     3    NA np        28 Forest Formation     Natural forest         
+#     1 class     4    NA np         2 Savanna Formation    Natural forest           
+#     1 class    11    NA np         7 Wetlands             Natural non fore
+#     1 class    12    NA np       246 Grassland            Natural non fore.           
+#     1 class    15    NA np       262 Pasture              Farming              
+#     1 class    30    NA np        35 Mining               Non vegetated           
+#     1 class    33    NA np        50 River,Lake and Ocean Water             
+  
 ```
 
 <a id="met-manchas"></a>
