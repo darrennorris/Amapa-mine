@@ -116,6 +116,10 @@ mapview(sf_acesso_20km) +
 ### Espaço
 
 Agora vamos olhar o espaco que preciso. 
+Arquivo de raster MapBiomas cobertura de terra ao redor do 
+Garimpo do Lourenço em 1985: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
+
+
 Este vez a entrada de dados espaciais seria atraves a importação de 
 um raster (arquivo de .tif). Lembre-se, para facilitar, os dados deve 
 ficar no mesmo diretório do seu código 
@@ -196,7 +200,6 @@ Vamos começar avaliando a área total da paisagem (área) de estudo.
 ```{r, warning = FALSE}
 area.total <- lsm_l_ta(r1985) 
 area.total #160264 Hectares
-
 ```
 Agora vamos ver a distância total de borda (te= “total
 edge”).
@@ -204,7 +207,6 @@ edge”).
 ```{r, warning = FALSE}
 te <- lsm_l_te(r1985)
 te # 547140 metros
-
 ```
 Total de borda mede a configuração da paisagem porque uma paisagem 
 altamente fragmentada terá muitas bordas. No entanto, a borda total 
@@ -220,7 +222,6 @@ adequado para comparacoes de paisagens com áreas totais diferentes.
 ```{r, warning = FALSE}
 ed <- lsm_l_ed(r1985) 
 ed #3.41 metros por hectare
-
 ```
 
 <a id="met-classes"></a>
@@ -237,7 +238,7 @@ os numeros (3, 4, 11.....) não tem uma referncia do mundo real.
 Para entender os resultados, podemos acrescentar nomes para os valores. 
 Ou seja incluir uma coluna de legenda com os nomes. Para isso 
 precisamos outro arquivo com os nomes.
-Arquivo de legenda.
+Arquivo de legenda ([mapbiomas_6_legend.xlsx](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/mapbiomas_6_legend.xlsx)).
 ```{r, warning = FALSE}
 mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
 
