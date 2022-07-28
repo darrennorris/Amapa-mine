@@ -47,7 +47,6 @@ library(landscapemetrics)
 library(terra)
 library(readxl)
 library(mapview)
-library(units)
 ```
 
 <a id="areadestudo"></a>
@@ -100,7 +99,7 @@ sf_acesso_utm <- st_transform(sf_acesso, crs = 31976)
 #polígono com raio de 20 km no entorno do ponto
 sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
 
-mapview(sf_acesso_20km)
+mapview(sf_acesso_20km) #verificar com mapa de base (OpenStreetMap)
 ```
 
 
@@ -153,7 +152,9 @@ plot(r1985)
 ## Calculo de métricas
 
 Vamos olhar alguns exemplos de métricas para cada nível da análise: 
-patch (para a mancha ou fragmento), class (métricas por classe ou tipo de habiat) e landscape (métricas para a paisagem como um todo).
+* patch (para a mancha ou fragmento), 
+* class (métricas por classe ou tipo de habiat) e 
+* landscape (métricas para a paisagem como um todo).
 
 Primeiro, pecisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
