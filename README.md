@@ -281,7 +281,7 @@ list_lsm(level = "class", type = "aggregation metric")
 
 ```
 
-Aqui vamos calcular todos as metricas por classe.
+Aqui vamos calcular todos as metricas por classe (função <code>calculate_lsm()</code>)).
 
 ```{r, warning = FALSE}
 # métricas de composição para a paisagem por classes
@@ -292,6 +292,9 @@ metrics_config <- calculate_lsm(r1985, level = "class", type = "aggregation metr
 
 ```
 
+E aqui, calcular correlações entre todos as metricas por classe 
+(função <code>show_correlation()</code>)).
+
 ```{r, warning = FALSE}
 
 show_correlation(data = metrics_comp, method = "pearson", labels = TRUE)
@@ -299,3 +302,6 @@ show_correlation(data = metrics_comp, method = "pearson", labels = TRUE)
 show_correlation(data = metrics_config, method = "pearson", labels = TRUE)
 
 ```
+Temos muitos valores e muitos metricas. 
+Este se chama um "tiro no escuro", algo cujo resultado se desconhece 
+ou é imprevisível. Isso não é recomendado. 
