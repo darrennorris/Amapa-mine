@@ -309,3 +309,18 @@ Para fazer uma escolha melhor (mais robusta), seguindo princípios
 básicos da ciência, precisamos ler os estudos anteriores 
 (artigos) para obter as métricas mais relevantes para nosso objetivo e 
 a hipótese a ser testada.
+
+Métricas de composição:
+* mean patch area (lsm_c_area_mn)
+* SD patch area (lsm_c_area_sd)
+* total (class) area (lsm_c_ca)
+* edge density (lsm_c_ed)
+* largest patch index (lsm_c_lpi)
+
+Métricas de configuração
+* aggregation index (lsm_c_ai)
+* patch cohesion index (lsm_c_cohesion)
+* mean euclidean nearest neighbor distance (lsm_c_enn_mn)
+* SD euclidean nearest neighbor distance (lsm_c_enn_sd)
+* number of patches (lsm_c_np)
+* patch density (lsm_c_pd)
