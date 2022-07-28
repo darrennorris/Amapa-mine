@@ -20,7 +20,8 @@ de habitat (fragmentos).
 
 - [Organização](#organizacao)
 - [Área de estudo](#areadestudo)
-  * [Ponto de referência](#Ponto)
+  * [Ponto de referência (EPSG: 4326)](#ponto)
+  * [Ponto de referência (EPSG: 31976)](#ponto31976)  
   * [Espaço](#espaco)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
@@ -33,7 +34,8 @@ de habitat (fragmentos).
 ## Organização
 Os dados aqui apresentados (gráficos, mapas) representam conteúdo do 
 domínio público, disponibilizados pelos institutos, órgãos e entidades
-federais, estaduais e privados ([IBGE](https://www.ibge.gov.br/),  [MapBiomas](https://mapbiomas.org/), [Agência Nacional de Mineração](https://dados.gov.br/dataset/sistema-de-informacoes-geograficas-da-mineracao-sigmine) ). O conteúdo está aqui apresentado para divulgação ampla, respetiando as obrigações de transparência, assim para agilizar e 
+federais, estaduais e privados ([IBGE](https://www.ibge.gov.br/),  [MapBiomas](https://mapbiomas.org/), [Agência Nacional de Mineração](https://dados.gov.br/dataset/sistema-de-informacoes-geograficas-da-mineracao-sigmine) ). O conteúdo está apresentado para divulgação ampla, 
+respetiando as obrigações de transparência, assim para agilizar e 
 facilitar ensino e o desenvolvimento técnico científco. O conteúdo não 
 representar versões ou produtos  finais e não devem ser apresentados/relatados/compartilhados/interpretados como conclusivos. 
 
@@ -64,7 +66,7 @@ Para visualizar um exemplo:
 https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
 
 <a id="ponto"></a>
-### Ponto de referência
+### Ponto de referência (EPSG: 4326)
 Aqui vamos incluir um raio de 20 km além do ponto de acesso para 
 o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
@@ -77,10 +79,12 @@ acesso <- data.frame(nome = "garimpo do Lourenço",
 sf_acesso <- st_as_sf(acesso, 
                coords = c("coord_x", "coord_y"),
             crs = 4326)
-plot(sf_acesso)
+plot(sf_acesso) # teste basica
 mapview(sf_acesso) #verificar com mapa de base (OpenStreetMap)
 ```
 
+<a id="ponto31976"></a>
+### Ponto de referência (EPSG: 31976)
 As análises da paisagem com o modelo "mancha-corredor-matriz" depende 
 de uma classificação categórica. Portanto, deve 
 optar para uma sistema de coordenados projetados, com área igual e 
@@ -100,7 +104,9 @@ sf_acesso_utm <- st_transform(sf_acesso, crs = 31976)
 #polígono com raio de 20 km no entorno do ponto
 sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
 
-mapview(sf_acesso_20km) #verificar com mapa de base (OpenStreetMap)
+#verificar com mapa de base (OpenStreetMap)
+mapview(sf_acesso_20km) + 
+  mapview(sf_acesso_utm, color = "black", col.regions = "yellow")
 ```
 
 
