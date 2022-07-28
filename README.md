@@ -115,9 +115,15 @@ mapview(sf_acesso_20km) +
 <a id="mapbiomas"></a>
 ### MapBiomas cobertura de terra
 
-Agora vamos olhar o espaco que preciso. 
+Agora vamos olhar cobertura de terra no espaco que preciso (área de estudo). 
 Arquivo de raster MapBiomas cobertura de terra ao redor do 
 Garimpo do Lourenço em 1985: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
+
+Aqui não vamos construir mapas, portanto os cores nas visualizações 
+não corresponde ao mundo real (por exemplo, verde não é floresta).
+Para visualizar em QGIS preciso baixar o arquivo com a legenda e cores 
+para Coleção¨6 (https://mapbiomas.org/codigos-de-legenda) e 
+segue tutoriais: https://www.youtube.com/watch?v=WtyotodHK8E .
 
 
 Este vez a entrada de dados espaciais seria atraves a importação de 
@@ -245,7 +251,7 @@ mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.
 ```
 
 Agora rodar de novo, com os resultados juntos com a legenda 
-de cada class. Nos resultadosOs acima, os valores na coluna "class" 
+de cada class. Nos resultados acima, os valores na coluna "class" 
 são as mesmas que tem na coluna "aid" no objeto "mapvals", onde também 
 tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes 
 para cada valor de class, com base na ligação (join) entre as colunas. 
