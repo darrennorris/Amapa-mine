@@ -6,7 +6,8 @@ Mineração e desmatamento no Amapá. Mining and deforestation in Amapá.
 Código de [R](https://cran.r-project.org/) e dados para calcular 
 métricas de paisagem associadas com a exploração de recursos minerários. 
 
-Objetivo é calcular métricas de paisagem e descrever a composição e a configuração da paisagem no entorno do Garimpo do Lourenço.
+O objetivo é calcular métricas de paisagem e descrever a composição e 
+a configuração da paisagem no entorno do Garimpo do Lourenço.
 
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
