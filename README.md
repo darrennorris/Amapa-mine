@@ -326,3 +326,7 @@ Métricas de configuração:
 * SD euclidean nearest neighbor distance (<code>lsm_c_enn_sd</code>)
 * number of patches (<code>lsm_c_np</code>)
 * patch density (<code>lsm_c_pd</code>)
+
+O próximo passo é comunicar os resultados obtidos. Para isso 
+precisamos resumir e apresentar as métricas selecionadas em tabelas e 
+figuras.
