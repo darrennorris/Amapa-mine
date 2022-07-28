@@ -126,18 +126,26 @@ análises da paisagem.
 
 
 ```{r}
-#
 r1985 <- rast("utm_cover_AP_lorenco_1985.tif")
 r1985
 
+#class       : SpatRaster 
+#dimensions  : 1341, 1341, 1  (nrow, ncol, nlyr)
+#resolution  : 29.87713, 29.87713  (x, y)
+#extent      : 409829.5, 449894.7, 236241.1, 276306.3  (xmin, xmax, ymin, ymax)
+#coord. ref. : SIRGAS 2000 / UTM zone 22N (EPSG:31976) 
+#source      : utm_cover_AP_lorenco_1985.tif 
+#name        : classification_1985 
+#min value   :                   3 
+#max value   :                  33 
+
 ```
-Ou use o command <code>file.choose()</code>, que faz a busca 
+Ou use o função <code>file.choose()</code>, que faz a busca 
 para arquivos. 
 
 ```{r}
 r1985 <- rast(file.choose())
 r1985
-
 ```
 
 Ou digitar o endereço do arquivo.
@@ -146,16 +154,22 @@ Ou digitar o endereço do arquivo.
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
 r1985
-
 ```
 
 Agora que o arquivo foi importado, podemos visualizá- lo.
 
 ```{r, warning = FALSE}
 #Visualizar
-plot(r1985)
+#Gradiente de cores padrao nao corresponde 
+#ao mundo real (por exemplo verde não é floresta)
+plot(r1985) 
+plot(sf_acesso_20km, add = TRUE, lty ="dashed", color = "black")
+plot(sf_acesso_utm, add = TRUE, cex = 2, pch = 19, color = "black")
 
 ```
+
+<img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="260">
+
 
 <a id="primeiros"></a>
 ## Calculo de métricas
