@@ -70,15 +70,15 @@ o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
 
 ```{r}
-garimpo <- data.frame(nome = "garimpo do Lourenço", 
+acesso <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
 #Converter para objeto espacial
-sf_garimpo <- st_as_sf(garimpo, 
+sf_acesso <- st_as_sf(acesso, 
                coords = c("coord_x", "coord_y"),
             crs = 4326)
-plot(sf_garimpo)
-mapview(sf_garimpo) #verificar com mapa de base (OpenStreetMap)
+plot(sf_acesso)
+mapview(sf_acesso) #verificar com mapa de base (OpenStreetMap)
 ```
 
 As análises da paisagem com o modelo "mancha-corredor-matriz" depende 
@@ -89,10 +89,18 @@ onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2
 Assim sendo, vamos adotar a sistema de coordenados projetados de 
 datum SIRGAS 2000, especificamente EPSG:31976 (SIRGAS 2000/UTM zone 22N).
 
+Precisamos então reprojetar o objeto original (em coordenados geograficas) 
+para a sistema de coordenados projetados. Em seguida, vamos produzir 
+um polígono com raio de 20 km no entorno do ponto.
+
 ```{r}
-sf_garimpo_utm <- st_transform(sf_garimpo, crs = 31976)
-sf_garimpo_20km <- st_buffer(sf_garimpo_utm, dist=20000)
-mapview(sf_garimpo_20km)
+#reprojetar
+sf_acesso_utm <- st_transform(sf_acesso, crs = 31976)
+
+#polígono com raio de 20 km no entorno do ponto
+sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
+
+mapview(sf_acesso_20km)
 ```
 
 
@@ -101,14 +109,18 @@ mapview(sf_garimpo_20km)
 
 Agora vamos olhar o espaco que preciso. 
 Este vez a entrada de dados espaciais seria atraves a importação de 
-um raster (arquivo de .tif). Lembre-se, para facilitar os dados deve 
+um raster (arquivo de .tif). Lembre-se, para facilitar, os dados deve 
 ficar no mesmo diretório do seu código 
 (verifique com <code>getwd()</code>). 
+Como nós já sabemos a sistema de coordenados desejadas, 
+o geoprocessamento da raster foi concluído antes de começar com as 
+análises da paisagem.
 
 
 ```{r}
 #
 r1985 <- rast("utm_cover_AP_lorenco_1985.tif")
+r1985
 
 ```
 Ou use o command <code>file.choose()</code>, que faz a busca 
@@ -116,6 +128,8 @@ para arquivos.
 
 ```{r}
 r1985 <- rast(file.choose())
+r1985
+
 ```
 
 Ou digitar o endereço do arquivo.
@@ -123,10 +137,11 @@ Ou digitar o endereço do arquivo.
 ```{r}
 raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
 r1985 <- rast(raster_in)
+r1985
 
 ```
 
-Agora o arquivo foi importado podemos visualizar.
+Agora que o arquivo foi importado, podemos visualizá- lo.
 
 ```{r, warning = FALSE}
 #Visualizar
@@ -137,9 +152,8 @@ plot(r1985)
 <a id="primeiros"></a>
 ## Calculo de métricas
 
-Vamos olhar alguns exemplos para cada nível da análise: patch (para a 
-mancha ou fragmento), class (métricas por classe ou tipo de habiat) e 
-landscape (métricas para a paisagem como um todo).
+Vamos olhar alguns exemplos de métricas para cada nível da análise: 
+patch (para a mancha ou fragmento), class (métricas por classe ou tipo de habiat) e landscape (métricas para a paisagem como um todo).
 
 Primeiro, pecisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
@@ -253,16 +267,15 @@ Queremos caracterizar áreas de mineração na paisagem, e aqui vamos
 olhar somente uma paisagem, em um momento do tempo. Então as métricas 
 para a paisagem como todo não tem relevância.
 
-Estamos olhando uma class (mineração), portanto vamos incluir as 
+Estamos olhando uma classe (mineração), portanto vamos incluir as 
 métricas para classes.
-Total area, Percentage of landscape, mean class area, number of patches, 
-range (min, max), 
+
 
 ```{r, warning = FALSE}
-# métricas de composição para classes
+# métricas de composição para a paisagem por classes
 list_lsm(level = "class", type = "area and edge metric")
 
-# métricas de configuração para classes
+# métricas de configuração para a paisagem por classes
 list_lsm(level = "class", type = "aggregation metric")
 
 ```
