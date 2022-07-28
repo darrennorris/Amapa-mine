@@ -306,5 +306,6 @@ Temos muitos valores e muitas métricas.
 Este se chama um "tiro no escuro", algo cujo resultado se desconhece 
 ou é imprevisível. Isso não é recomendado. 
 Para fazer uma escolha melhor (mais robusta), seguindo princípios 
-básicos da ciência, precisamos ler e entender os artigos para obter 
-métricas relevantes para nosso objetivo e a hipótese a ser testada.
+básicos da ciência, precisamos ler os estudos anteriores 
+(artigos) para obter as métricas mais relevantes para nosso objetivo e 
+a hipótese a ser testada.
