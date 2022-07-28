@@ -168,7 +168,7 @@ plot(sf_acesso_utm, add = TRUE, cex = 2, pch = 19, color = "black")
 
 ```
 
-<img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="260">
+<img src="figures/base_raster_point.png" alt="rasterpoint" width="400" height="320">
 
 
 <a id="primeiros"></a>
