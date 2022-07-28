@@ -311,16 +311,16 @@ básicos da ciência, precisamos ler os estudos anteriores
 a hipótese a ser testada.
 
 Métricas de composição:
-* mean patch area (lsm_c_area_mn)
-* SD patch area (lsm_c_area_sd)
-* total (class) area (lsm_c_ca)
-* edge density (lsm_c_ed)
-* largest patch index (lsm_c_lpi)
+* mean patch area (<code>lsm_c_area_mn</code>)
+* SD patch area (<code>lsm_c_area_sd</code>)
+* total (class) area (<code>lsm_c_ca</code>)
+* edge density (<code>lsm_c_ed</code>)
+* largest patch index (<code>lsm_c_lpi</code>)
 
 Métricas de configuração
-* aggregation index (lsm_c_ai)
-* patch cohesion index (lsm_c_cohesion)
-* mean euclidean nearest neighbor distance (lsm_c_enn_mn)
-* SD euclidean nearest neighbor distance (lsm_c_enn_sd)
-* number of patches (lsm_c_np)
-* patch density (lsm_c_pd)
+* aggregation index (<code>lsm_c_ai</code>)
+* patch cohesion index (<code>lsm_c_cohesion</code>)
+* mean euclidean nearest neighbor distance (<code>lsm_c_enn_mn</code>)
+* SD euclidean nearest neighbor distance (<code>lsm_c_enn_sd</code>)
+* number of patches (<code>lsm_c_np</code>)
+* patch density (<code>lsm_c_pd</code>)
