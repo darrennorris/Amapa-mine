@@ -302,6 +302,9 @@ show_correlation(data = metrics_comp, method = "pearson", labels = TRUE)
 show_correlation(data = metrics_config, method = "pearson", labels = TRUE)
 
 ```
-Temos muitos valores e muitos metricas. 
+Temos muitos valores e muitas métricas. 
 Este se chama um "tiro no escuro", algo cujo resultado se desconhece 
 ou é imprevisível. Isso não é recomendado. 
+Para fazer uma escolha melhor (mais robusta), seguindo princípios 
+básicos da ciência, precisamos ler e entender os artigos para obter 
+métricas relevantes para nosso objetivo e a hipótese a ser testada.
