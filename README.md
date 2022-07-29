@@ -249,24 +249,24 @@ Ou seja incluir uma coluna de legenda com os nomes. Para isso
 precisamos outro arquivo com os nomes.
 Arquivo de legenda ([mapbiomas_6_legend.xlsx](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/mapbiomas_6_legend.xlsx)).
 ```{r, warning = FALSE}
-mapvals <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
+class_nomes <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_legend.xlsx")
 
 ```
 
 Agora rodar de novo, com os resultados juntos com a legenda 
 de cada class. Nos resultados acima, os valores na coluna "class" 
-são as mesmas que tem na coluna "aid" no objeto "mapvals", onde também 
+são as mesmas que tem na coluna "aid" no objeto "class_nomes", onde também 
 tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes 
 para cada valor de class, com base na ligação (join) entre as colunas. 
 
 ```{r, warning = FALSE}
 #Área de cada classe em hectares, incluindo os nomes para cada classe
 lsm_c_ca(r1985) %>% 
-  left_join(mapvals, by = c("class" = "aid"))
+  left_join(class_nomes, by = c("class" = "aid"))
   
 #Numero de fragmentos (manchas)
 lsm_c_np(r1985) %>% 
-  left_join(mapvals, by = c("class" = "aid"))
+  left_join(class_nomes, by = c("class" = "aid"))
   
 # Maior numero de manchas em classes de cobertura classificadas como 
 # pasto (pasture) e formação campestre (grassland).
