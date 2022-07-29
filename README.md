@@ -93,13 +93,12 @@ mapview(sf_acesso) #verificar com mapa de base (OpenStreetMap)
 ### Ponto de referência (EPSG: 31976)
 As análises da paisagem com o modelo "mancha-corredor-matriz" depende 
 de uma classificação categórica. Portanto, deve 
-optar para uma sistema de coordenados projetados, com área igual e 
-com unidade em metros. Temos um raio de 20 km, que é um area geografica 
-onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
+optar para uma sistema de coordenados projetados, com pixels de 
+área igual e com unidade em metros. Temos um raio de 20 km, que é um area geografica onde o retângulo envolvente é menor que um fuso [UTM](https://forest-gis.com/2016/06/um-pouco-sobre-a-projecao-utm.html/).
 Assim sendo, vamos adotar a sistema de coordenados projetados de 
 datum SIRGAS 2000, especificamente EPSG:31976 (SIRGAS 2000/UTM zone 22N).
 
-Precisamos então reprojetar o objeto original (em coordenados geograficas) 
+Precisamos então reprojetar o objeto original (em coordenados geográficas) 
 para a sistema de coordenados projetados. Em seguida, vamos produzir 
 um polígono com raio de 20 km no entorno do ponto.
 
@@ -328,7 +327,7 @@ list_lsm(level = "class", type = "aggregation metric")
 
 ```
 
-Aqui vamos calcular todos as metricas por classe (função <code>calculate_lsm()</code>)).
+Aqui vamos calcular todos as métricas por classe (função <code>calculate_lsm()</code>)).
 
 ```{r, warning = FALSE}
 # métricas de composição para a paisagem por classes
