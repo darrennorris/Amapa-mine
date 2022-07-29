@@ -378,7 +378,7 @@ Métricas de configuração:
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
 figuras. Agora já fizemos os cálculos, as tabelas e 
-figuras podem ser feitas no R ([figuras](https://www.r-graph-gallery.com/portfolio/ggplot2-package/)) tanto quanto em aplicativos diferentes 
+figuras podem ser feitas no R ([figuras](https://www.youtube.com/watch?v=0RxEDDiRzQY)) tanto quanto em aplicativos diferentes 
 (por exemplo tabelas atraves ["tabelas dinamicas"] no [Microsoft Excel](https://www.techtudo.com.br/dicas-e-tutoriais/2018/10/como-fazer-tabela-dinamica-no-excel.ghtml) ou [LibreOffice calc](https://www.youtube.com/watch?v=Mqi5BJwzAzo)).
 Mas por isso, primeiramente precisamos exportar os resultados.
 
