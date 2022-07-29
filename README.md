@@ -28,7 +28,7 @@ de habitat (fragmentos).
   * [Métricas para as classes](#met-classes)
   * [Métricas para as manchas](#met-manchas)
 - [Quais métricas devo escolher?](#quais)
-
+- [Exportar os resultados](#exportar-os-resultados)
 
 <a id="organizacao"></a>
 ## Organização
@@ -373,6 +373,11 @@ Métricas de configuração:
 * number of patches (<code>lsm_c_np</code>)
 * patch density (<code>lsm_c_pd</code>)
 
+
+## Exportar os resultados
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
-figuras.
+figuras. Agora já fizemos os cálculos as tabelas e 
+figuras podem ser feitas em aplicativos diferentes (por exemplo no Excel).
+Mas por isso, primeiramente precisamos exportar os resultados.
+
