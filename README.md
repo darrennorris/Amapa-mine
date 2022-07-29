@@ -72,15 +72,17 @@ o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
 
 ```{r}
-#tabela de dados com coordenados de acesso em 1985.
+# Tabela de dados com coordenados de acesso em 1985.
 acesso <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
            
-#Converter para objeto espacial, com sistema de coordenados geográfica
+# Converter para objeto espacial, com sistema de coordenados geográfica.
 sf_acesso <- st_as_sf(acesso, 
                coords = c("coord_x", "coord_y"),
             crs = 4326)
+
+# Visualizar para verificar.
 plot(sf_acesso) # teste basica
 mapview(sf_acesso) #verificar com mapa de base (OpenStreetMap)
 ```
