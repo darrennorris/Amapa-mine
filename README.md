@@ -72,10 +72,12 @@ o Garimpo do Lourenço em 1985.
 Isso representa uma área quadrada de 40 x 40 km (1600 km2).
 
 ```{r}
+#tabela de dados com coordenados de acesso em 1985.
 acesso <- data.frame(nome = "garimpo do Lourenço", 
            coord_x = -51.630871, 
            coord_y = 2.318514)
-#Converter para objeto espacial
+           
+#Converter para objeto espacial, com sistema de coordenados geográfica
 sf_acesso <- st_as_sf(acesso, 
                coords = c("coord_x", "coord_y"),
             crs = 4326)
@@ -233,7 +235,7 @@ ed #3.41 metros por hectare
 <a id="met-classes"></a>
 ### Métricas para as classes
 
-Area de cada class em hectares.
+Area de cada classe em hectares.
 
 ```{r, warning = FALSE}
 lsm_c_ca(r1985) 
@@ -257,11 +259,11 @@ tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes
 para cada valor de class, com base na ligação (join) entre as colunas. 
 
 ```{r, warning = FALSE}
-#Area de cada class em hectares, incluindo os nomes para cada class
+#Área de cada classe em hectares, incluindo os nomes para cada classe
 lsm_c_ca(r1985) %>% 
   left_join(mapvals, by = c("class" = "aid"))
   
-#Numero de fragmentos (patches)
+#Numero de fragmentos (manchas)
 lsm_c_np(r1985) %>% 
   left_join(mapvals, by = c("class" = "aid"))
   
@@ -335,7 +337,7 @@ metrics_config <- calculate_lsm(r1985, level = "class", type = "aggregation metr
 
 ```
 
-E aqui, calcular correlações entre todos as metricas por classe 
+E aqui, calcular correlações entre todos as métricas por classe 
 (função <code>show_correlation()</code>)).
 
 ```{r, warning = FALSE}
