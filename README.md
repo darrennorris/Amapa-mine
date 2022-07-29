@@ -22,7 +22,7 @@ de habitat (fragmentos).
 - [Área de estudo](#areadestudo)
   * [Ponto de referência (EPSG: 4326)](#ponto)
   * [Ponto de referência (EPSG: 31976)](#ponto31976)  
-  * [MapBiomas cobertura de terra](#mapbiomas)
+- [MapBiomas: cobertura de terra](#mapbiomas)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
   * [Métricas para as classes](#met-classes)
@@ -116,7 +116,7 @@ mapview(sf_acesso_20km) +
 <img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="260">
 
 <a id="mapbiomas"></a>
-### MapBiomas: cobertura da terra
+## MapBiomas: cobertura da terra
 
 Agora vamos olhar cobertura e uso da terra no espaco que preciso (área de estudo). 
 Para isso, vamos utilizar um arquivo de raster do projeto [MapBiomas](https://mapbiomas.org/) 
