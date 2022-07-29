@@ -377,7 +377,14 @@ Métricas de configuração:
 ## Exportar os resultados
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
-figuras. Agora já fizemos os cálculos as tabelas e 
-figuras podem ser feitas em aplicativos diferentes (por exemplo no Excel).
+figuras. Agora já fizemos os cálculos, as tabelas e 
+figuras podem ser feitas no R tanto quanto em aplicativos diferentes 
+(por exemplo atraves ["tabelas dinamicas"] no [Microsoft Excel](https://www.techtudo.com.br/dicas-e-tutoriais/2018/10/como-fazer-tabela-dinamica-no-excel.ghtml) ou [LibreOffice calc](https://www.youtube.com/watch?v=Mqi5BJwzAzo)).
 Mas por isso, primeiramente precisamos exportar os resultados.
 
+```{r, warning = FALSE}
+
+bind_rows(metrics_comp, metrics_config) %>% 
+write.csv2("metricas_lourenco_1985.csv", row.names=FALSE)
+
+```
