@@ -380,7 +380,8 @@ precisamos resumir e apresentar as métricas selecionadas em tabelas e
 figuras. Agora já fizemos os cálculos, as tabelas e 
 figuras podem ser feitas no R ([figuras](https://www.youtube.com/watch?v=0RxEDDiRzQY)) tanto quanto em aplicativos diferentes 
 (por exemplo tabelas atraves ["tabelas dinamicas"] no [Microsoft Excel](https://www.techtudo.com.br/dicas-e-tutoriais/2018/10/como-fazer-tabela-dinamica-no-excel.ghtml) ou [LibreOffice calc](https://www.youtube.com/watch?v=Mqi5BJwzAzo)).
-Mas por isso, primeiramente precisamos exportar os resultados.
+Mas por isso, primeiramente precisamos exportar os resultados 
+(veja mais exeplos aqui: [Introdução ao R import-export](https://www.lampada.uerj.br/arquivosdb/_book2/importexport.html).
 
 ```{r, warning = FALSE}
 
