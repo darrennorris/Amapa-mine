@@ -63,7 +63,7 @@ Sonter et. al. 2017.
 Mining drives extensive deforestation in the Brazilian Amazon
 https://www.nature.com/articles/s41467-017-00557-w
 
-Para visualizar um exemplo ([Extração de bauxita na Flona Saracá-Taquera]()https://cpisp.org.br/mais-uma-uc-na-amazonia-sob-risco-mineracao-ameaca-flona-saraca-taquera-no-para/):
+Para visualizar um exemplo com a [Extração de bauxita na Flona Saracá-Taquera](https://cpisp.org.br/mais-uma-uc-na-amazonia-sob-risco-mineracao-ameaca-flona-saraca-taquera-no-para/):
 https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
 
 <a id="ponto"></a>
