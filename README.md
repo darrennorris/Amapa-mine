@@ -116,14 +116,15 @@ mapview(sf_acesso_20km) +
 <img src="figures/mapview_point_buffer.png" alt="bufferpoint" width="400" height="260">
 
 <a id="mapbiomas"></a>
-### MapBiomas cobertura de terra
+### MapBiomas: cobertura da terra
 
-Agora vamos olhar cobertura de terra no espaco que preciso (área de estudo). 
-Arquivo de raster MapBiomas cobertura de terra ao redor do 
-Garimpo do Lourenço em 1985. Arquivo no formato raster, apenas com 
-valores inteiros, em que cada célula/pixel representa uma área 
-considerada homogênea, como uso do solo ou tipo de vegetação. 
-Arqivo .tif: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
+Agora vamos olhar cobertura e uso da terra no espaco que preciso (área de estudo). 
+Para isso, vamos utilizar um arquivo de raster do projeto [MapBiomas](https://mapbiomas.org/) 
+com cobertura de terra ao redor do Garimpo do Lourenço em 1985. 
+Este arquivo no formato raster, tem apenas valores inteiros, em que 
+cada célula/pixel representa uma área considerada homogênea, 
+como uso do solo ou tipo de vegetação. 
+Arqivo ".tif" disponivel aqui: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
 
 Aqui não vamos construir mapas, portanto os cores nas visualizações 
 não corresponde ao mundo real (por exemplo, verde não é floresta).
