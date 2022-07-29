@@ -367,16 +367,16 @@ objetivos vamos incluir 8 métricas
 (4 de composição e 4 de configuração). 
 
 Métricas de composição:
-* mean patch area (<code>lsm_c_area_mn</code>)
-* SD patch area (<code>lsm_c_area_sd</code>)
-* total (class) area (<code>lsm_c_ca</code>)
-* largest patch index (<code>lsm_c_lpi</code>)
+* mean patch area (<code>lsm_c_area_mn</code>) Área médio das manchas por classe.
+* SD patch area (<code>lsm_c_area_sd</code>) Desvio padrão das áreas dos manchas por classe.
+* total (class) area (<code>lsm_c_ca</code>) Área total por classe.
+* largest patch index (<code>lsm_c_lpi</code>) Índice de maior mancha (proporção da paisagem).
 
 Métricas de configuração:
-* aggregation index (<code>lsm_c_ai</code>)
-* patch cohesion index (<code>lsm_c_cohesion</code>)
-* number of patches (<code>lsm_c_np</code>)
-* patch density (<code>lsm_c_pd</code>)
+* aggregation index (<code>lsm_c_ai</code>) Índice de agregação.
+* patch cohesion index (<code>lsm_c_cohesion</code>) Índice de coesão das manchas.
+* number of patches (<code>lsm_c_np</code>) Número de manchas.
+* patch density (<code>lsm_c_pd</code>) Densidade de manchas.
 
 
 ## Exportar os resultados
