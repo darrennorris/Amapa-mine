@@ -124,7 +124,7 @@ Garimpo do Lourenço em 1985: [utm_cover_AP_lorenco_1985.tif](https://github.com
 
 Aqui não vamos construir mapas, portanto os cores nas visualizações 
 não corresponde ao mundo real (por exemplo, verde não é floresta).
-Para visualizar em QGIS preciso baixar o arquivo com a legenda e cores 
+Para visualizar em QGIS preciso baixar um arquivo com a legenda e cores 
 para Coleção¨6 (https://mapbiomas.org/codigos-de-legenda) e 
 segue tutoriais: https://www.youtube.com/watch?v=WtyotodHK8E .
 
