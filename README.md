@@ -22,7 +22,7 @@ de habitat (fragmentos).
 - [Área de estudo](#areadestudo)
   * [Ponto de referência (EPSG: 4326)](#ponto)
   * [Ponto de referência (EPSG: 31976)](#ponto31976)  
-- [MapBiomas: cobertura de terra](#mapbiomas)
+- [MapBiomas: cobertura da terra](#mapbiomas)
 - [Calculo de métricas?](#primeiros)
   * [Métricas para a paisagem](#met-paisagem)
   * [Métricas para as classes](#met-classes)
