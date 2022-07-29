@@ -125,17 +125,16 @@ com cobertura de terra ao redor do Garimpo do Lourenço em 1985.
 Este arquivo no formato raster, tem apenas valores inteiros, em que 
 cada célula/pixel representa uma área considerada homogênea, 
 como uso do solo ou tipo de vegetação. 
-Arqivo ".tif" disponivel aqui: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
+Arquivo ".tif" disponível aqui: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
 
-Aqui não vamos construir mapas, portanto os cores nas visualizações 
+Não vamos construir mapas, portanto os cores nas visualizações 
 não corresponde ao mundo real (por exemplo, verde não é floresta).
 Para visualizar em QGIS preciso baixar um arquivo com a legenda e cores 
 para Coleção¨6 (https://mapbiomas.org/codigos-de-legenda) e 
 segue tutoriais: https://www.youtube.com/watch?v=WtyotodHK8E .
 
-
-Este vez a entrada de dados espaciais seria atraves a importação de 
-um raster (arquivo de .tif). Lembre-se, para facilitar, os dados deve 
+Este vez, a entrada de dados espaciais seria atraves a importação de 
+um raster (arquivo de .tif). Lembre-se, para facilitar, os arquivos deve 
 ficar no mesmo diretório do seu código 
 (verifique com <code>getwd()</code>). 
 Como nós já sabemos a sistema de coordenados desejadas, 
