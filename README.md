@@ -355,21 +355,18 @@ Para fazer uma escolha melhor (mais robusta), seguindo princípios
 básicos da ciência, precisamos ler os estudos anteriores 
 (artigos) para obter as métricas mais relevantes para nosso objetivo e 
 a hipótese a ser testada. Com base em os estudos anteriores e os 
-objetivos vamos incluir 11 métricas 
-(5 de composição e 6 de configuração). 
+objetivos vamos incluir 8 métricas 
+(4 de composição e 4 de configuração). 
 
 Métricas de composição:
 * mean patch area (<code>lsm_c_area_mn</code>)
 * SD patch area (<code>lsm_c_area_sd</code>)
 * total (class) area (<code>lsm_c_ca</code>)
-* edge density (<code>lsm_c_ed</code>)
 * largest patch index (<code>lsm_c_lpi</code>)
 
 Métricas de configuração:
 * aggregation index (<code>lsm_c_ai</code>)
 * patch cohesion index (<code>lsm_c_cohesion</code>)
-* mean euclidean nearest neighbor distance (<code>lsm_c_enn_mn</code>)
-* SD euclidean nearest neighbor distance (<code>lsm_c_enn_sd</code>)
 * number of patches (<code>lsm_c_np</code>)
 * patch density (<code>lsm_c_pd</code>)
 
