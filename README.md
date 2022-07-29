@@ -103,13 +103,13 @@ para a sistema de coordenados projetados. Em seguida, vamos produzir
 um polígono com raio de 20 km no entorno do ponto.
 
 ```{r}
-#reprojetar
+# Reprojetar,
 sf_acesso_utm <- st_transform(sf_acesso, crs = 31976)
 
-#polígono com raio de 20 km no entorno do ponto
+# Polígono com raio de 20 km no entorno do ponto.
 sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
 
-#verificar com mapa de base (OpenStreetMap)
+# Verificar com mapa de base (OpenStreetMap).
 mapview(sf_acesso_20km) + 
   mapview(sf_acesso_utm, color = "black", col.regions = "yellow")
 ```
@@ -120,7 +120,10 @@ mapview(sf_acesso_20km) +
 
 Agora vamos olhar cobertura de terra no espaco que preciso (área de estudo). 
 Arquivo de raster MapBiomas cobertura de terra ao redor do 
-Garimpo do Lourenço em 1985: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
+Garimpo do Lourenço em 1985. Arquivo no formato raster, apenas com 
+valores inteiros, em que cada célula/pixel representa uma área 
+considerada homogênea, como uso do solo ou tipo de vegetação. 
+Arqivo .tif: [utm_cover_AP_lorenco_1985.tif](https://github.com/darrennorris/Amapa-mine/blob/main/data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif)
 
 Aqui não vamos construir mapas, portanto os cores nas visualizações 
 não corresponde ao mundo real (por exemplo, verde não é floresta).
@@ -172,9 +175,9 @@ r1985
 Agora que o arquivo foi importado, podemos visualizá- lo.
 
 ```{r, warning = FALSE}
-#Visualizar para verificar
-#Gradiente de cores padrao nao corresponde 
-#ao mundo real (por exemplo verde não é floresta)
+# Visualizar para verificar
+# Gradiente de cores padrao nao corresponde 
+# ao mundo real (por exemplo verde não é floresta)
 plot(r1985) 
 plot(sf_acesso_20km, add = TRUE, lty ="dashed", color = "black")
 plot(sf_acesso_utm, add = TRUE, cex = 2, pch = 19, color = "black")
@@ -254,17 +257,17 @@ class_nomes <- read_excel("data//raster//Mapbiomas_AP_equalarea//mapbiomas_6_leg
 ```
 
 Agora rodar de novo, com os resultados juntos com a legenda 
-de cada class. Nos resultados acima, os valores na coluna "class" 
+de cada classe. Nos resultados acima, os valores na coluna "class" 
 são as mesmas que tem na coluna "aid" no objeto "class_nomes", onde também 
 tem os nomes . Assim, podemos repetir, mas agora incluindo os nomes 
 para cada valor de class, com base na ligação (join) entre as colunas. 
 
 ```{r, warning = FALSE}
-#Área de cada classe em hectares, incluindo os nomes para cada classe
+# Área de cada classe em hectares, incluindo os nomes para cada classe
 lsm_c_ca(r1985) %>% 
   left_join(class_nomes, by = c("class" = "aid"))
   
-#Numero de fragmentos (manchas)
+# Numero de fragmentos (manchas)
 lsm_c_np(r1985) %>% 
   left_join(class_nomes, by = c("class" = "aid"))
   
@@ -315,7 +318,11 @@ olhar somente uma paisagem, em um momento do tempo. Então as métricas
 para a paisagem como todo não tem relevância.
 
 Estamos olhando uma classe (mineração), portanto vamos incluir as 
-métricas para classes.
+métricas para classes. Alem disso, as métricas de paisagem em nível de 
+classe são mais eficazes na definição de processos ecológicos 
+(Tischendorf, L. Can landscape indices predict ecological processes 
+consistently?. Landscape Ecology 16, 235–254 (2001). 
+https://doi.org/10.1023/A:1011112719782.).
 
 
 ```{r, warning = FALSE}
