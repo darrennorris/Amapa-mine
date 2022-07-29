@@ -54,15 +54,16 @@ library(mapview)
 
 <a id="areadestudo"></a>
 ## Área de estudo
-Estabelecer a extensão da área de estudo com base nos objetivos e 
-estudos anteriores.
-Mineração pode aumentar a perda da floresta até 70 km além dos limites 
-do processo de mineração:
+Para alcançar o objetivo de caracterizar a paisagem no entorno do 
+Garimpo do Lourenço, precisamos estabelecer a extensão da área de estudo.
+Isso seria estabelicida com base nos objetivos e estudos anteriores.
+Sabemos que atividades asociados com a mineração pode aumentar a perda
+da floresta até 70 km além dos limites do processo de mineração:
 Sonter et. al. 2017.
 Mining drives extensive deforestation in the Brazilian Amazon
 https://www.nature.com/articles/s41467-017-00557-w
 
-Para visualizar um exemplo:
+Para visualizar um exemplo ([Extração de bauxita na Flona Saracá-Taquera]()https://cpisp.org.br/mais-uma-uc-na-amazonia-sob-risco-mineracao-ameaca-flona-saraca-taquera-no-para/):
 https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
 
 <a id="ponto"></a>
