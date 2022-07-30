@@ -30,7 +30,7 @@ de habitat (fragmentos).
   * [Métricas para as manchas](#met-manchas)
 - [Quais métricas devo escolher?](#quais)
 - [Exportar as métricas](#exportar-metricas) 
-- [Preparando os dados](#preparando-os-dados)
+- [Preparando os resultados](#preparando-os-resultados)
 - [Uma tabela versatil](#uma-tabela-versatil)
   * [1. Reorganização](#reorg)
   * [2. Montar a tabela](#montar)
@@ -406,7 +406,7 @@ bind_rows(metrics_comp, metrics_config) %>%
 write.csv2("metricas_lourenco_1985.csv", row.names=FALSE)
 
 ```
-## Preparando os dados
+## Preparando os resultados
 A entrada de dados seria com as métricas da paisagem calculados 
 anteriormente. Lembre-se, para facilitar, os dados deve ficar no 
 mesmo diretório do seu código (verifique com <code>getwd()</code>). 
