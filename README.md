@@ -601,5 +601,5 @@ theme(legend.position="bottom") +
 guides(fill = guide_legend(nrow = 4))
 
 ```
-
+Uma imagem vale mais que mil palavras.
 <img src="figures/fig_cobertura.png" alt="cobertura" width="650" height="300">
