@@ -35,7 +35,7 @@ de habitat (fragmentos).
   * [1. Reorganização](#reorg)
   * [2. Montar a tabela](#montar)
   * [3. Exportar](#exportar)  
-- [Figura](#figura)
+- [Uma figura elegante](#uma-figura-elegante)
 
 <a id="organizacao"></a>
 ## Organização
@@ -74,6 +74,9 @@ https://www.nature.com/articles/s41467-017-00557-w
 
 Para visualizar um exemplo com a [Extração de bauxita na Flona Saracá-Taquera](https://cpisp.org.br/mais-uma-uc-na-amazonia-sob-risco-mineracao-ameaca-flona-saraca-taquera-no-para/):
 https://earthengine.google.com/timelapse/#v=-1.70085,-56.45017,8.939,latLng&t=2.70
+
+E aqui com o Garimpo do Lourenço: 
+https://earthengine.google.com/timelapse#v=2.2994,-51.68423,11.382,latLng&t=0.03
 
 <a id="ponto"></a>
 ### Ponto de referência (EPSG: 4326)
@@ -557,7 +560,7 @@ E agora pode finalizar a tabela "tabela_metricas_1985.html"
 no documento você está escrevendo 
 (inserir -> objeto, e depois segue passos) ou em uma [planilha](https://support.microsoft.com/pt-br/office/importar-dados-de-um-arquivo-csv-html-ou-de-texto-b62efe49-4d5b-4429-b788-e1211b5e90f6).
 
-## Figura 
+## Uma figura elegante 
 Uma imagem vale mais que mil palavras. 
 Portanto, graficos/figuras/imagens sao uma das mais importantes 
 formas de comunicar a ciencia. 
@@ -574,7 +577,7 @@ classe_cores <- c("Campo Alagado e Área Pantanosa" = "#45C2A5",
 "Pastagem" = "#FFD966", 
 "Rio, Lago e Oceano" = "#0000FF") 
 
-#Grafico de barra basica
+# Grafico de barra basica
 metricas_tab %>% 
 mutate(class_prop = (ca/160264)*100) %>% 
 ggplot(aes(x = classe_descricao, y = class_prop)) +
@@ -601,5 +604,6 @@ theme(legend.position="bottom") +
 guides(fill = guide_legend(nrow = 4))
 
 ```
-Uma imagem vale mais que mil palavras.
+
+Uma imagem vale mais que mil palavras:
 <img src="figures/fig_cobertura.png" alt="cobertura" width="650" height="300">
