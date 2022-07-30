@@ -2,7 +2,7 @@
 Mudanças na paisagem ao redor do Garimpo do Lourenço. 
 Changes in the landscape surrounding the Lourenço gold mine.
 
-<img align="right" src="figures/www/lourenco.jpg" alt="Gold mine" width="300" style="margin-top: 20px">
+<img align="right" src="figures/www/lourenco_metrics.jpg" alt="Gold mine" width="300" style="margin-top: 20px">
 
 Código de [R](https://cran.r-project.org/) e dados para calcular 
 métricas de paisagem associadas com a exploração de recursos minerários. 
@@ -631,7 +631,7 @@ scale_size(guide = "none") +
 coord_flip() + 
 labs(title = "MapBiomas cobertura da terra", 
 subtitle = "Entorno do Garimpo do Lorenço 1985",
-y = "Densidade de manchas (numero por 100 hectares)", 
+y = "Densidade de manchas (número por 100 hectares)", 
 x = "") + 
 theme(legend.position="bottom") + 
 guides(col = guide_legend(nrow = 4)) 
