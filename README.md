@@ -611,3 +611,31 @@ guides(fill = guide_legend(nrow = 4))
 Uma imagem vale mais que mil palavras:
 
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
+
+Agora com uma métrica de configuração: 
+
+
+```{r}
+# Agora com Densidade de manchas.
+# Agrupando por tipo (natural e antropico)
+# Incluindo boxplot indicando tendência central (mediano)
+# Com cores conforme legenda da Mapbiomas Coleção 6
+# Corrigindo texto dos eixos.
+# Mudar posição da leganda para o texto com nomes longas encaixar.
+metricas_tab %>% 
+ggplot(aes(x = type_class, y = pd)) + 
+geom_boxplot(colour = "grey50") +
+geom_point(aes(size = np, colour = classe_descricao)) + 
+scale_color_manual("classe", values = classe_cores) +
+scale_size(guide = "none") +
+coord_flip() + 
+labs(title = "MapBiomas cobertura da terra", 
+subtitle = "Entorno do Garimpo do Lorenço 1985",
+y = "Densidade de manchas (numero por 100 hectares)", 
+x = "") + 
+theme(legend.position="bottom") + 
+guides(col = guide_legend(nrow = 4)) 
+
+```
+
+<img src="figures/fig_density.png" alt="density" width="515" height="363">
