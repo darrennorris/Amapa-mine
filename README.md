@@ -392,7 +392,8 @@ Métricas de configuração:
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
 figuras. Agora já fizemos os cálculos, as tabelas e 
-figuras podem ser feitas no R ([figuras](https://www.youtube.com/watch?v=0RxEDDiRzQY)) tanto quanto em aplicativos diferentes 
+figuras podem ser feitas no R ([figuras](https://www.youtube.com/watch?v=0RxEDDiRzQY)), tanto quanto 
+em aplicativos diferentes 
 (por exemplo tabelas atraves ["tabelas dinamicas"] no [Microsoft Excel](https://www.techtudo.com.br/dicas-e-tutoriais/2018/10/como-fazer-tabela-dinamica-no-excel.ghtml) ou [LibreOffice calc](https://www.youtube.com/watch?v=Mqi5BJwzAzo)).
 Mas por isso, primeiramente precisamos exportar os resultados 
 (veja mais exemplos aqui: [Introdução ao R import-export](https://www.lampada.uerj.br/arquivosdb/_book2/importexport.html). 
@@ -504,7 +505,8 @@ métricas ficam nas colunas (<code>pivot_wider</code>) e colocando as colunas no
 ```{r}
 metricas_nomes %>% 
 # Escholer métricas desejados do conjunto completo de métricas.
-select(c(type_class, classe_descricao, metric, value)) %>% 
+select(c(type_class, classe_descricao, hexadecimal_code, 
+metric, value)) %>% 
 # reorganizando
 pivot_wider(names_from = metric, values_from = value) -> metricas_tab
 
@@ -555,4 +557,49 @@ E agora pode finalizar a tabela "tabela_metricas_1985.html"
 no documento você está escrevendo 
 (inserir -> objeto, e depois segue passos) ou em uma [planilha](https://support.microsoft.com/pt-br/office/importar-dados-de-um-arquivo-csv-html-ou-de-texto-b62efe49-4d5b-4429-b788-e1211b5e90f6).
 
-## Figura
+## Figura 
+Uma imagem vale mais que mil palavras. 
+Portanto, graficos/figuras/imagens sao uma das mais importantes 
+formas de comunicar a ciencia. 
+Como exemplo illustrativa, aqui vamos produzir...
+
+```{r}
+# Inclundo cores conforme legenda da Mapbiomas Coleção 6
+# Legenda nomes ordem alfabetica
+classe_cores <- c("Campo Alagado e Área Pantanosa" = "#45C2A5", 
+"Formação Campestre" = "#B8AF4F", 
+"Formação Florestal" = "#006400", 
+"Formação Savânica" = "#00ff00", 
+"Mineração" = "#af2a2a", 
+"Pastagem" = "#FFD966", 
+"Rio, Lago e Oceano" = "#0000FF") 
+
+#Grafico de barra basica
+metricas_tab %>% 
+mutate(class_prop = (ca/160264)*100) %>% 
+ggplot(aes(x = classe_descricao, y = class_prop)) +
+geom_col()
+
+
+# Agora com ajustes
+# Agrupando por tipo (natural e antropico)
+# Com cores conforme legenda da Mapbiomas Coleção 6
+# Corrigindo texto dos eixos.
+# Mudar posição da leganda para o texto com nomes longas encaixar.
+metricas_tab %>% 
+mutate(class_prop = (ca/160264)*100) %>% 
+ggplot(aes(x = type_class, y = class_prop, 
+fill = classe_descricao)) + 
+scale_fill_manual("classe", values = classe_cores) +
+geom_col(position = position_dodge2(width = 1)) + 
+coord_flip() + 
+labs(title = "MapBiomas cobertura da terra", 
+subtitle = "Entorno do Garimpo do Lorenço 1985",
+y = "Proporção da paisagem (%)", 
+x = "") + 
+theme(legend.position="bottom") + 
+guides(fill = guide_legend(nrow = 4))
+
+```
+
+<img src="figures/fig_cobertura.png" alt="cobertura" width="500" height="130">
