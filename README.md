@@ -1,5 +1,6 @@
-# Amapa-mine
-Mineração e desmatamento no Amapá. Mining and deforestation in Amapá.
+# Garimpo do Lourenço
+Mudanças na paisagem ao redor do Garimpo do Lourenço. 
+Changes in the landscape surrounding the Lourenço gold mine.
 
 <img align="right" src="figures/www/lourenco.jpg" alt="Gold mine" width="300" style="margin-top: 20px">
 
@@ -28,7 +29,13 @@ de habitat (fragmentos).
   * [Métricas para as classes](#met-classes)
   * [Métricas para as manchas](#met-manchas)
 - [Quais métricas devo escolher?](#quais)
-- [Exportar os resultados](#exportar-os-resultados)
+- [Exportar as métricas](#exportar-metricas) 
+- [Preparando os dados](#preparando-os-dados)
+- [Uma tabela versatil](#uma-tabela-versatil)
+  * [1. Reorganização](#reorg)
+  * [2. Montar a tabela](#montar)
+  * [3. Exportar](#exportar)  
+- [Figura](#figura)
 
 <a id="organizacao"></a>
 ## Organização
@@ -44,12 +51,14 @@ Os gráficos e mapas ficam na pasta [figures](https://github.com/darrennorris/Am
 
 Pacotes necessarios:
 ```{r}
-library(sf)
 library(tidyverse)
-library(landscapemetrics)
-library(terra)
 library(readxl)
+library(terra)
+library(sf)
+library(landscapemetrics)
 library(mapview)
+library(knitr) 
+library(kableExtra)
 ```
 
 <a id="areadestudo"></a>
@@ -191,10 +200,10 @@ plot(sf_acesso_utm, add = TRUE, cex = 2, pch = 19, color = "black")
 <a id="primeiros"></a>
 ## Calculo de métricas
 
-Vamos olhar alguns exemplos de métricas para cada nível da análise: 
-* patch (para a mancha ou fragmento), 
-* class (métricas por classe ou tipo de habiat) e 
+Vamos olhar alguns exemplos de métricas para cada nível da análise:
 * landscape (métricas para a paisagem como um todo).
+* class (métricas por classe ou tipo de habiat).
+* patch (para a mancha ou fragmento).
 
 Primeiro, pecisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
@@ -378,8 +387,8 @@ Métricas de configuração:
 * number of patches (<code>lsm_c_np</code>) Número de manchas.
 * patch density (<code>lsm_c_pd</code>) Densidade de manchas.
 
-
-## Exportar os resultados
+<a id="exportar-metricas"></a>
+## Exportar as métricas
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
 figuras. Agora já fizemos os cálculos, as tabelas e 
@@ -397,3 +406,153 @@ bind_rows(metrics_comp, metrics_config) %>%
 write.csv2("metricas_lourenco_1985.csv", row.names=FALSE)
 
 ```
+## Preparando os dados
+A entrada de dados seria com as métricas da paisagem calculados 
+anteriormente [Amapa-mine](https://github.com/darrennorris/Amapa-mine). Lembre-se, para facilitar, os dados deve ficar no mesmo diretório do 
+seu código (verifique com <code>getwd()</code>). 
+
+Vocês devem baixar o arquivo de Excel [metricas_lourenco_1985.xlsx](https://github.com/darrennorris/Amapa-mine/blob/main/data/metricas_lourenco_1985.xlsx).
+
+No caso de um arquivo de Excel simples, a importação poderia ser 
+feita através menu de "Import Dataset" na janela/panel "Environment" 
+de Rstudio.
+Ou com linhas de código: 
+```{r}
+metricas_1985 <- read_excel("metricas_lourenco_1985.xlsx")
+metricas_1985
+
+#  layer level class id    metric     value
+#   <dbl> <chr> <dbl> <chr> <chr>      <dbl>
+#     1 class     3 NA    area_cv  529.   
+#     1 class     4 NA    area_cv   22.3  
+#     1 class    11 NA    area_cv   71.2  
+```
+
+Ou use o função <code>file.choose()</code>, que faz a busca 
+para arquivos. 
+```{r
+metricas_1985 <- read_excel(file.choose())
+metricas_1985
+```
+
+Ou digitar o endereço do arquivo.
+```{r}
+excel_in <- "data/metricas_lourenco_1985.xlsx"
+metricas_1985 <- read_excel(excel_in)
+metricas_1985
+```
+Os dados são padronizados ("tidy"), mas ainda não parece adequados para apresentação em tabelas ou figuras.
+Temos muitos valores e muitas métricas (listadas na coluna "metric"). 
+Com base em os estudos anteriores e os objetivos vamos incluir 8 métricas 
+(4 de composição e 4 de configuração). 
+
+Métricas de composição:
+* mean patch area (<code>lsm_c_area_mn</code>) Área médio das manchas por classe.
+* SD patch area (<code>lsm_c_area_sd</code>) Desvio padrão das áreas dos manchas por classe.
+* total (class) area (<code>lsm_c_ca</code>) Área total por classe.
+* largest patch index (<code>lsm_c_lpi</code>) Índice de maior mancha (proporção da paisagem).
+
+Métricas de configuração:
+* aggregation index (<code>lsm_c_ai</code>) Índice de agregação.
+* patch cohesion index (<code>lsm_c_cohesion</code>) Índice de coesão das manchas.
+* number of patches (<code>lsm_c_np</code>) Número de manchas.
+* patch density (<code>lsm_c_pd</code>) Densidade de manchas.
+
+Escolheremos (atraves um filtro) as métricas que queremos para obter uma 
+tabela de dados. Mantendo os dados originais, 
+assim sendo para acresentar mais métricas nos resultados, 
+preciso somente acrescentar mais no codigo.
+
+```{r}
+# Arquivo com os nomes das classes
+class_in <- "data/mapbiomas_6_legend.xlsx"
+class_nomes <- read_excel(class_in)
+
+# Especificar métricas desejados
+met_comp <- c("ca", "lpi", "area_mn", "area_sd")
+met_conf <- c("ai", "cohesion", "np", "pd")
+met_todos <- c(met_comp, met_conf)
+
+# Escholer métricas desejados do conjunto completo
+metricas_1985 %>% 
+filter(metric %in% all_of(met_todos)) %>% 
+left_join(class_nomes, by = c("class" = "aid")) -> metricas_nomes
+```
+
+## Uma tabela versatil
+Mas, ainda não tem uma coluna com os nomes das métricas. 
+Portanto, solução simples é de exportar no formato de .csv e 
+finalizar/editar no Excel / calc. 
+
+Outra opção que pode facilitar, particularmente quando pode há mudanças 
+e revisões, é produzir a tabela no R. Aqui vamos repetir os passos que 
+vocês conhecem com as ferramentas de Excel (arraste e solte, 
+copiar-colar, filtro, tabela dinâmica).
+
+Podemos organizar os dados nos temos 
+(objecto "metricas_nomes") e apresentar em uma tabela em 3 passos: 
+1.  Reorganização, 
+2.  Montar a tabela e 
+3.  Exportar a tabela em uma formato versatil, compativel com 
+documentos (e.g. Word) e planilhas (e.g. Excel). 
+
+<a id="reorg"></a>
+### 1. Reorganização
+Escolhendo as colunas desejadas (<code>select</code>), reorganizando para as 
+métricas ficam nas colunas (<code>pivot_wider</code>) e colocando as colunas novas na sequência desejada (<code>select</code>).
+
+```{r}
+metricas_nomes %>% 
+# Escholer métricas desejados do conjunto completo de métricas.
+select(c(type_class, classe_descricao, metric, value)) %>% 
+# reorganizando
+pivot_wider(names_from = metric, values_from = value) -> metricas_tab
+
+```
+<a id="montar"></a>
+### 2. Montar a tabela
+Agora vamos produzir uma tabela simples e exportar em um formato 
+versatil (html) para finalização no Word / Excel.
+
+```{r}
+# Nomes para as colunas 
+col_nomes <- c("Tipo", "Descrição","Área total", "Índice maior mancha", 
+"Número de manchas", "Área manchas (médio)", "Área manchas (DP)", 
+"Índice de agregação", "Índice de coesão", "Densidade de manchas")
+
+# Valores para pontos decimais de cada coluna.
+meu_digits <- c(0, 0, 0, 1, 0, 1, 1, 1, 1, 2)
+
+metricas_tab %>% 
+# Colocar as colunas na sequência desejada. 
+select(type_class, classe_descricao, ca, lpi, np, area_mn, area_sd, 
+ai, cohesion, pd) %>% 
+# Especificar nomes para as colunas.
+kable(col.names = col_nomes, 
+digits = meu_digits) %>% 
+kableExtra::kable_styling() #visualizar para verificar
+```
+<img src="figures/tabela_metricas.png" alt="rasterpoint" width="500" height="300">
+Parece um bom começo. Vamos exportar. Depois, pode finalizar no 
+documento você está escrevendo (inserir -> objeto, e depois segue os 
+passos) ou em uma planilha.
+
+<a id="exportar"></a>
+### 3. Exportar a tabela
+
+```{r}
+metricas_tab %>% 
+# Colocar as colunas na sequência desejada. 
+select(type_class, classe_descricao, ca, lpi, np, area_mn, area_sd, 
+ai, cohesion, pd) %>% 
+# Especificar nomes para as colunas.
+kable(col.names = col_nomes, 
+digits = meu_digits) %>% 
+kableExtra::kable_styling() %>% 
+kableExtra::save_kable("tabela_metricas_1985.html")
+```
+E agora pode finalizar a tabela "tabela_metricas_1985.html" 
+no documento você está escrevendo 
+(inserir -> objeto, e depois segue passos) ou em uma [planilha](https://support.microsoft.com/pt-br/office/importar-dados-de-um-arquivo-csv-html-ou-de-texto-b62efe49-4d5b-4429-b788-e1211b5e90f6).
+
+## Figura
