@@ -562,9 +562,12 @@ no documento você está escrevendo
 
 ## Uma figura elegante 
 Uma imagem vale mais que mil palavras. 
-Portanto, graficos/figuras/imagens sao uma das mais importantes 
-formas de comunicar a ciencia. 
-Como exemplo illustrativa, aqui vamos produzir...
+Portanto, gráficos/figuras/imagens são uma das mais importantes formas 
+de comunicar a ciência. 
+
+Como exemplo ilustrativo, aqui vamos produzir 
+gráficos comparando métricas de composição e configuração da paisagem 
+ao redor do Garimpo do Lourenço....
 
 ```{r}
 # Inclundo cores conforme legenda da Mapbiomas Coleção 6
@@ -606,4 +609,5 @@ guides(fill = guide_legend(nrow = 4))
 ```
 
 Uma imagem vale mais que mil palavras:
+
 <img src="figures/fig_cobertura.png" alt="cobertura" width="650" height="300">
