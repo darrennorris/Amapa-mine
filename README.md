@@ -408,8 +408,8 @@ write.csv2("metricas_lourenco_1985.csv", row.names=FALSE)
 ```
 ## Preparando os dados
 A entrada de dados seria com as métricas da paisagem calculados 
-anteriormente [Amapa-mine](https://github.com/darrennorris/Amapa-mine). Lembre-se, para facilitar, os dados deve ficar no mesmo diretório do 
-seu código (verifique com <code>getwd()</code>). 
+anteriormente. Lembre-se, para facilitar, os dados deve ficar no 
+mesmo diretório do seu código (verifique com <code>getwd()</code>). 
 
 Vocês devem baixar o arquivo de Excel [metricas_lourenco_1985.xlsx](https://github.com/darrennorris/Amapa-mine/blob/main/data/metricas_lourenco_1985.xlsx).
 
@@ -485,11 +485,11 @@ Portanto, solução simples é de exportar no formato de .csv e
 finalizar/editar no Excel / calc. 
 
 Outra opção que pode facilitar, particularmente quando pode há mudanças 
-e revisões, é produzir a tabela no R. Aqui vamos repetir os passos que 
-vocês conhecem com as ferramentas de Excel (arraste e solte, 
+e revisões, é produzir a tabela no R. Aqui vamos repetir no R os 
+passos que vocês conhecem com as ferramentas de Excel (arraste e solte, 
 copiar-colar, filtro, tabela dinâmica).
 
-Podemos organizar os dados nos temos 
+Podemos organizar os dados que nos temos 
 (objecto "metricas_nomes") e apresentar em uma tabela em 3 passos: 
 1.  Reorganização, 
 2.  Montar a tabela e 
