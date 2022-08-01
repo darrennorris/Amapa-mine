@@ -644,7 +644,7 @@ Uma imagem vale mais que mil palavras:
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
 
 Mas como existe uma separação grande na faixa de valores, ainda é difícil 
-ver todas as classes. Temos uma distribuição com valores extremos. 
+de ver todas as classes. Temos uma distribuição com valores extremos. 
 Uma solução seria uma transformação (por exemplo log), assim os 
 valores ficarem mais proximos. 
 
