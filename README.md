@@ -643,10 +643,10 @@ Uma imagem vale mais que mil palavras:
 
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
 
-Mas como existe uma separação grande na faixa de valores ainda é difícil 
-ver todas as classes. Temos muito espaço em branco entre os pontos. 
-Temos uma distribuição com valores extremos, uma solução seria uma 
-transformação (por exemplo log), assim os valores ficarem mais proximos. 
+Mas como existe uma separação grande na faixa de valores, ainda é difícil 
+ver todas as classes. Temos uma distribuição com valores extremos. 
+Uma solução seria uma transformação (por exemplo log), assim os 
+valores ficarem mais proximos. 
 
 segmentos de eixo — Se você está 
 preocupado com interpretações enganosas, ou uma transformação não 
