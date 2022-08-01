@@ -36,6 +36,9 @@ de habitat (fragmentos).
   * [2. Montar a tabela](#montar)
   * [3. Exportar](#exportar)  
 - [Uma figura elegante](#uma-figura-elegante)
+  * [Gráfico de barra](#barra) 
+  * [Gráfico de boxplot](#boxplot) 
+
 
 <a id="organizacao"></a>
 ## Organização
@@ -567,7 +570,35 @@ de comunicar a ciência.
 
 Como exemplo ilustrativo, aqui vamos produzir 
 gráficos comparando métricas de composição e configuração da paisagem 
-ao redor do Garimpo do Lourenço....
+ao redor do Garimpo do Lourenço.
+
+É uma boa ideia gastar bastante tempo para tornar figuras científicas 
+as mais informativas e atraentes possíveis. Escusado será dizer que a 
+precisão empírica é primordial. E por isso, o que fica excluído/omitido 
+é tão importante quanto o que foi incluído. Para ajudar, você deve se 
+perguntar o seguinte ao criar uma figura: eu apresentaria essa figura 
+em uma apresentação para um grupo de colegas? Eu o apresentaria a um 
+público de não especialistas? Eu gostaria que essa figura aparecesse 
+em um artigo de notícias sobre meu trabalho? É claro que todos esses 
+locais exigem diferentes graus de precisão, complexidade e estética, 
+mas uma boa figura deve servir para educar simultaneamente públicos 
+muito diferentes.
+
+
+Tabelas versus gráficos — A primeira pergunta que você deve se fazer 
+é se você pode transformar aquela tabela (chata e feia) em algum tipo 
+de gráfico. Você realmente precisa dessa tabela no texto principal? 
+Você não pode simplesmente traduzir as entradas das células em um 
+gráfico de barras/colunas/xy? Se você pode, você deve. Quando uma 
+tabela não pode ser facilmente traduzida em uma figura, na maioria 
+das vezes a provavelmente pertence às 
+Informações Suplementares/Anexos/Apêndices.
+
+<a id="barra"></a>
+### Gráfico de barra
+
+Primeiramente, vamos produzir uma gráfico de barra comparando a 
+proporção que cada classe representa na paisagem.
 
 ```{r}
 # Inclundo cores conforme legenda da Mapbiomas Coleção 6
@@ -611,6 +642,9 @@ guides(fill = guide_legend(nrow = 4))
 Uma imagem vale mais que mil palavras:
 
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
+
+<a id="boxplot"></a>
+### Gráfico de boxplot
 
 Agora com uma métrica de configuração: 
 
