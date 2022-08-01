@@ -664,10 +664,11 @@ Agora com uma métrica de configuração:
 
 
 ```{r}
-# Agora com Densidade de manchas.
+# Métrica de configuração: Densidade de manchas (coluna "pd").
 # Agrupando por tipo (natural e antropico)
 # Incluindo boxplot indicando tendência central (mediano)
 # Com cores conforme legenda da Mapbiomas Coleção 6
+# Tamanho dos pontos proporcional o numero de manchas
 # Corrigindo texto dos eixos.
 # Mudar posição da leganda para o texto com nomes longas encaixar.
 metricas_tab %>% 
