@@ -409,8 +409,8 @@ O arquivo vai sai no mesmo diretório do seu código
 
 ```{r, warning = FALSE}
 
-bind_rows(metrics_comp, metrics_config) %>% 
-write.csv2("metricas_lourenco_1985.csv", row.names=FALSE)
+bind_rows(metrics_comp, metrics_config) -> metricas_1985
+write.csv2(metricas_1985, "metricas_lourenco_1985.csv", row.names=FALSE)
 
 ```
 ## Preparando os resultados
@@ -643,19 +643,12 @@ Uma imagem vale mais que mil palavras:
 
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
 
-Mas como existe uma separação grande na faixa de valores, ainda é difícil 
-de ver todas as classes. Temos uma distribuição com valores extremos. 
-Uma solução seria uma transformação (por exemplo log), assim os 
-valores ficarem mais proximos. 
+Mas como existe uma separação grande na faixa de valores e ainda é 
+difícil de ver todas as classes. Temos uma distribuição com uma valor 
+muito mais alto comparada com os outros. 
+extremos. Uma solução seria uma transformação (por exemplo "log"), 
+assim os valores ficarem mais proximos.
 
-segmentos de eixo — Se você está 
-preocupado com interpretações enganosas, ou uma transformação não 
-resolve o problema do espaço em branco, um eixo segmentado pode produzir 
-uma figura muito mais atraente. Digamos que 90% dos seus dados estejam 
-entre 1 e 10, mas você tem alguns dados de 100 ou mais. 
-Quebrar o eixo para que a maior parte dele se refira à faixa de 1:10, 
-com um pouco dedicado aos valores extremos, pode realmente ajudar na 
-interpretação.
 
 <a id="boxplot"></a>
 ### Gráfico de boxplot
