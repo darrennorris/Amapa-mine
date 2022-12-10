@@ -13,6 +13,11 @@ a configuração da paisagem no entorno do Garimpo do Lourenço.
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
+
+
+Asssim sendo, análises com métricas de paisagem é um atividade fundamental na ecologia da paisagem. Nesta exemplo (versão atualizada aqui: https://rpubs.com/darren75/lourenco) aprenderemos sobre como analisar a cobertura da terra com métricas de paisagem em R.
+
+
 Este exemplo tem como base teórica o modelo 
 "mancha-corredor-matriz" - uma representação da paisagem em manchas 
 de habitat (fragmentos). 

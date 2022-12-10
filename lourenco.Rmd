@@ -35,7 +35,7 @@ knit_hooks$set(output = function(x, options) {
 })
 ```
 
-# Apresentação Garimpo do Lourenço
+# Apresentação
 Mudanças na paisagem ao redor do Garimpo do Lourenço. 
 Changes in the landscape surrounding the Lourenço gold mine.
 
@@ -50,6 +50,9 @@ a configuração da paisagem no entorno do Garimpo do Lourenço.
 As métricas de paisagem são a forma que os ecólogos de paisagem usam 
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
+
+Nesta exemplo (versão atualizada aqui: https://rpubs.com/darren75/lourenco) aprenderemos sobre como analisar a cobertura da terra com métricas de paisagem em R.
+
 Este exemplo tem como base teórica o modelo 
 "mancha-corredor-matriz" - uma representação da paisagem em manchas 
 de habitat (fragmentos). 
@@ -271,12 +274,14 @@ plot(sf_acesso_utm, add = TRUE, cex = 2, pch = 19, color = "black")
 
 ```
 
-## Calculo de métricas
+# Calculo de métricas
 
 Vamos olhar alguns exemplos de métricas para cada nível da análise:
-* landscape (métricas para a paisagem como um todo).
-* class (métricas por classe ou tipo de habiat).
-* patch (para a mancha ou fragmento).
+
+
+ * landscape (métricas para a paisagem como um todo).
+ * class (métricas por classe ou tipo de habiat).
+ * patch (para a mancha ou fragmento).
 
 Primeiro, pecisamos verificar se o raster está no formato correto.
 ```{r, warning = FALSE}
@@ -286,7 +291,7 @@ check_landscape(r1985)
 ```
 Tudo certo (veja a coluna do "OK")!
 
-### Métricas para a paisagem
+## Métricas para a paisagem
 
 Vamos começar avaliando a área total da paisagem (área) de estudo.
 
@@ -318,7 +323,7 @@ ed #3.41 metros por hectare
 ```
 
 
-### Métricas para as classes
+## Métricas para as classes
 
 Area de cada classe em hectares.
 
@@ -376,7 +381,7 @@ lsm_c_np(r1985) %>%
 ```
 
 
-### Métricas para as manchas
+## Métricas para as manchas
 Vamos calcular o tamanho de cada mancha agora.
 
 ```{r, warning = FALSE, eval=FALSE}
@@ -395,7 +400,7 @@ summarise(max_ha = max(value))
 
 ```
 
-## Quais métricas devo escolher?
+# Quais métricas devo escolher?
 
 A decisão deve ser tomada com base em uma combinação de fatores.
 Incluindo tais fatores como: base teórica, considerações estatísticas, 
@@ -421,6 +426,9 @@ list_lsm(level = "class", type = "area and edge metric")
 list_lsm(level = "class", type = "aggregation metric")
 
 ```
+
+
+## Métricas por classe de mineração
 
 Aqui vamos calcular todos as métricas por classe (função <code>calculate_lsm()</code>)).
 
@@ -454,7 +462,7 @@ a hipótese a ser testada. Com base em os estudos anteriores e os
 objetivos vamos incluir 8 métricas nos resultados. 
 
 
-## Exportar as métricas
+# Exportar as métricas
 O próximo passo é comunicar os resultados obtidos. Para isso 
 precisamos resumir e apresentar as métricas selecionadas em tabelas e 
 figuras. Agora já fizemos os cálculos, as tabelas e 
@@ -475,7 +483,7 @@ write.csv2(metricas_1985, "metricas_lourenco_1985.csv", row.names=FALSE)
 ```
 
 
-## Preparando os resultados
+# Preparando os resultados
 A entrada de dados seria com as métricas da paisagem calculados 
 anteriormente.  
 
@@ -520,12 +528,16 @@ Com base em os estudos anteriores e os objetivos vamos incluir 8 métricas
 (4 de composição e 4 de configuração).
 
 Métricas de composição:
+
+
 * mean patch area (<code>lsm_c_area_mn</code>) Área médio das manchas por classe.
 * SD patch area (<code>lsm_c_area_sd</code>) Desvio padrão das áreas dos manchas por classe.
 * total (class) area (<code>lsm_c_ca</code>) Área total por classe.
 * largest patch index (<code>lsm_c_lpi</code>) Índice de maior mancha (proporção da paisagem).
 
 Métricas de configuração:
+
+
 * aggregation index (<code>lsm_c_ai</code>) Índice de agregação.
 * patch cohesion index (<code>lsm_c_cohesion</code>) Índice de coesão das manchas.
 * number of patches (<code>lsm_c_np</code>) Número de manchas.
@@ -553,7 +565,7 @@ filter(metric %in% all_of(met_todos)) %>%
 left_join(class_nomes, by = c("class" = "aid")) -> metricas_nomes
 ```
 
-## Uma tabela versatil
+# Uma tabela versatil
 Mas, ainda não tem uma coluna com os nomes das métricas. 
 Portanto, solução simples é de exportar no formato de .csv e 
 finalizar/editar no Excel / calc. 
@@ -570,7 +582,7 @@ Podemos organizar os dados que nos temos
 3.  Exportar a tabela em uma formato versatil, compativel com 
 documentos (e.g. Word) e planilhas (e.g. Excel).
 
-### 1. Reorganização
+## 1. Reorganização
 Escolhendo as colunas desejadas (<code>select</code>), reorganizando para as 
 métricas ficam nas colunas (<code>pivot_wider</code>) e colocando as colunas novas na sequência desejada (<code>select</code>).
 
@@ -585,7 +597,7 @@ pivot_wider(names_from = metric, values_from = value) -> metricas_tab
 ```
 
 
-### 2. Montar a tabela
+## 2. Montar a tabela
 Agora vamos produzir uma tabela simples e exportar em um formato 
 versatil (html) para finalização no Word / Excel.
 
@@ -612,7 +624,7 @@ Parece um bom começo. Vamos exportar. Depois, pode finalizar no
 documento você está escrevendo (inserir -> objeto, e depois segue os 
 passos) ou em uma planilha.
 
-### 3. Exportar a tabela
+## 3. Exportar a tabela
 
 ```{r, eval=FALSE}
 metricas_tab %>% 
@@ -638,49 +650,11 @@ kableExtra::kable_styling() %>%
 kableExtra::save_kable("data/tabela_metricas_1985.html")
 ```
 
-## Uma figura elegante 
-Uma imagem vale mais que mil palavras. 
-Portanto, gráficos/figuras/imagens são uma das mais importantes formas 
-de comunicar a ciência. 
-
-Como exemplo ilustrativo, aqui vamos produzir 
-gráficos comparando métricas de composição e configuração da paisagem 
-ao redor do Garimpo do Lourenço.
-
-É uma boa ideia gastar bastante tempo para tornar figuras científicas 
-as mais informativas e atraentes possíveis. Escusado será dizer que a 
-precisão empírica é primordial. E por isso, o que fica excluído/omitido 
-é tão importante quanto o que foi incluído. Para ajudar, você deve se 
-perguntar o seguinte ao criar uma figura: eu apresentaria essa figura 
-em uma apresentação para um grupo de colegas? Eu o apresentaria a um 
-público de não especialistas? Eu gostaria que essa figura aparecesse 
-em um artigo de notícias sobre meu trabalho? É claro que todos esses 
-locais exigem diferentes graus de precisão, complexidade e estética, 
-mas uma boa figura deve servir para educar simultaneamente públicos 
-muito diferentes.
-
-
-Tabelas versus gráficos — A primeira pergunta que você deve se fazer 
-é se você pode transformar aquela tabela (chata e feia) em algum tipo 
-de gráfico. Você realmente precisa dessa tabela no texto principal? 
-Você não pode simplesmente traduzir as entradas das células em um 
-gráfico de barras/colunas/xy? Se você pode, você deve. Quando uma 
-tabela não pode ser facilmente traduzida em uma figura, na maioria 
-das vezes a provavelmente pertence às 
-Informações Suplementares/Anexos/Apêndices.
-
-
-### Gráfico de barra
-
-Primeiramente, vamos produzir uma gráfico de barra comparando a 
-proporção que cada classe representa na paisagem.
-
-
 E agora pode finalizar a tabela "tabela_metricas_1985.html" 
 no documento você está escrevendo 
 (inserir -> objeto, e depois segue passos) ou em uma [planilha](https://support.microsoft.com/pt-br/office/importar-dados-de-um-arquivo-csv-html-ou-de-texto-b62efe49-4d5b-4429-b788-e1211b5e90f6).
 
-## Uma figura elegante 
+# Uma figura elegante 
 Uma imagem vale mais que mil palavras. 
 Portanto, gráficos/figuras/imagens são uma das mais importantes formas 
 de comunicar a ciência. 
@@ -712,12 +686,10 @@ das vezes a provavelmente pertence às
 Informações Suplementares/Anexos/Apêndices.
 
 
-### Gráfico de barra
+## Gráfico de barra
 
 Primeiramente, vamos produzir uma gráfico de barra comparando a 
 proporção que cada classe representa na paisagem.
-
-
 
 ```{r}
 # Inclundo cores conforme legenda da Mapbiomas Coleção 6
@@ -730,6 +702,10 @@ classe_cores <- c("Campo Alagado e Área Pantanosa" = "#45C2A5",
 "Pastagem" = "#FFD966", 
 "Rio, Lago e Oceano" = "#0000FF") 
 
+```
+
+E agora o grafico.......
+```{r, eval=FALSE}
 # Grafico de barra basica
 metricas_tab %>% 
 mutate(class_prop = (ca/160264)*100) %>% 
@@ -762,15 +738,14 @@ Uma imagem vale mais que mil palavras:
 
 <img src="figures/fig_cobertura.png" alt="cobertura" width="680" height="300">
 
-Mas como existe uma separação grande na faixa de valores e ainda é 
-difícil de ver todas as classes. Temos uma distribuição com uma valor 
-muito mais alto comparada com os outros. 
+Mas existe uma separação grande na faixa de valores e ainda é 
+difícil de ver todas as classes. Temos uma distribuição com valores 
+muito mais altos comparada com os outros. 
 extremos. Uma solução seria uma transformação (por exemplo "log"), 
 assim os valores ficarem mais proximos.
 
 
-<a id="boxplot"></a>
-### Gráfico de boxplot
+## Gráfico de boxplot
 
 Agora com uma métrica de configuração: 
 
@@ -799,4 +774,3 @@ guides(col = guide_legend(nrow = 4))
 
 ```
 
-<img src="figures/fig_density.png" alt="density" width="515" height="363">

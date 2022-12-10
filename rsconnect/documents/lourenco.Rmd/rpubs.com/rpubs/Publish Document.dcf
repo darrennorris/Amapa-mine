@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/982068/8ec127e0fa6144bebfde79f0c265a269
+bundleId: https://api.rpubs.com/api/v1/document/982068/8ec127e0fa6144bebfde79f0c265a269
+url: http://rpubs.com/darren75/982068
+when: 1670706420.01704
+lastSyncTime: 1670706420.01704
