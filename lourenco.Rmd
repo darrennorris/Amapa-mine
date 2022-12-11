@@ -140,6 +140,9 @@ E aqui com o Garimpo do Lourenço:
 https://earthengine.google.com/timelapse#v=2.2994,-51.68423,11.382,latLng&t=0.03
 
 
+# Dados
+
+
 ## Ponto de referência (EPSG: 4326)
 Aqui vamos incluir um raio de 20 km além do ponto de acesso para 
 o Garimpo do Lourenço em 1985.
@@ -186,13 +189,22 @@ um polígono com raio de 20 km no entorno do ponto.
 # Reprojetar o ponto.
 sf_acesso_utm <- st_transform(sf_acesso, crs = 31976)
 # Polígono com raio de 500 metros no entorno do ponto.
-sf_acesso_500m <- st_buffer(sf_acesso_utm, dist=500)
+sf_acesso_500m <- st_buffer(sf_acesso_utm, dist=500) %>% 
+  mutate(raio_km = 0.5)
 # Polígono com raio de 1 km no entorno do ponto.
-sf_acesso_1km <- st_buffer(sf_acesso_utm, dist=1000)
+sf_acesso_1km <- st_buffer(sf_acesso_utm, dist=1000) %>% 
+  mutate(raio_km = 1)
 # Polígono com raio de 2 km no entorno do ponto.
-sf_acesso_2km <- st_buffer(sf_acesso_utm, dist=2000)
+sf_acesso_2km <- st_buffer(sf_acesso_utm, dist=2000) %>% 
+  mutate(raio_km = 2)
+# Polígono com raio de 4 km no entorno do ponto.
+sf_acesso_4km <- st_buffer(sf_acesso_utm, dist=4000) %>% 
+  mutate(raio_km = 4)
 # Polígono com raio de 20 km no entorno do ponto.
 sf_acesso_20km <- st_buffer(sf_acesso_utm, dist=20000)
+
+acesso_buffers <- bind_rows(sf_acesso_500m, sf_acesso_1km, 
+                            sf_acesso_2km, sf_acesso_4km)
 ```
 
 ### Verificar com mapa de base (OpenStreetMap).
@@ -206,7 +218,7 @@ mapview(sf_acesso_20km) +
 knitr::include_graphics("figures/mapview_point_buffer.png")
 ```
 
-## MapBiomas: cobertura da terra
+## Dados: MapBiomas cobertura da terra
 
 Agora vamos olhar cobertura e uso da terra no espaco que preciso (área de estudo). 
 Para isso, vamos utilizar um arquivo de raster do projeto [MapBiomas](https://mapbiomas.org/) 
@@ -256,9 +268,16 @@ r1985
 
 
 ```{r, echo=FALSE}
-raster_in <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
-r1985 <- rast(raster_in)
+r_85 <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_1985.tif"
+r1985 <- rast(r_85)
+# 2003
+r_03 <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_2003.tif"
+# 2020 
+r_20 <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_2020.tif"
 
+# combinação com os 3 arquivos para juntar 3 anos
+r_85a20 <- c(r_85, r_03, r_20)
+mapbiomas_85a20 <- rast(r_85a20)
 ```
 
 Agora que o arquivo foi importado, podemos visualizá- lo.
@@ -532,7 +551,7 @@ Métricas de composição:
 
 * mean patch area (<code>lsm_c_area_mn</code>) Área médio das manchas por classe.
 * SD patch area (<code>lsm_c_area_sd</code>) Desvio padrão das áreas dos manchas por classe.
-* total (class) area (<code>lsm_c_ca</code>) Área total por classe.
+* class area percentage of landscape (<code>lsm_c_pland</code>) Porcentagem de área na paisagem por classe.
 * largest patch index (<code>lsm_c_lpi</code>) Índice de maior mancha (proporção da paisagem).
 
 Métricas de configuração:
@@ -555,13 +574,13 @@ class_in <- "data/mapbiomas_6_legend.xlsx"
 class_nomes <- read_excel(class_in)
 
 # Especificar métricas desejados
-met_comp <- c("ca", "lpi", "area_mn", "area_sd")
+met_comp <- c("pland", "lpi", "area_mn", "area_sd")
 met_conf <- c("ai", "cohesion", "np", "pd")
 met_todos <- c(met_comp, met_conf)
 
 # Escholer métricas desejados do conjunto completo
 metricas_1985 %>% 
-filter(metric %in% all_of(met_todos)) %>% 
+filter(metric %in% met_todos) %>% 
 left_join(class_nomes, by = c("class" = "aid")) -> metricas_nomes
 ```
 
@@ -612,7 +631,7 @@ meu_digits <- c(0, 0, 0, 1, 0, 1, 1, 1, 1, 2)
 
 metricas_tab %>% 
 # Colocar as colunas na sequência desejada. 
-select(type_class, classe_descricao, ca, lpi, np, area_mn, area_sd, 
+select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
 ai, cohesion, pd) %>% 
 # Especificar nomes para as colunas.
 kable(col.names = col_nomes, 
@@ -629,7 +648,7 @@ passos) ou em uma planilha.
 ```{r, eval=FALSE}
 metricas_tab %>% 
 # Colocar as colunas na sequência desejada. 
-select(type_class, classe_descricao, ca, lpi, np, area_mn, area_sd, 
+select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
 ai, cohesion, pd) %>% 
 # Especificar nomes para as colunas.
 kable(col.names = col_nomes, 
@@ -641,7 +660,7 @@ kableExtra::save_kable("tabela_metricas_1985.html")
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 metricas_tab %>% 
 # Colocar as colunas na sequência desejada. 
-select(type_class, classe_descricao, ca, lpi, np, area_mn, area_sd, 
+select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
 ai, cohesion, pd) %>% 
 # Especificar nomes para as colunas.
 kable(col.names = col_nomes, 
@@ -708,7 +727,7 @@ E agora o grafico.......
 ```{r, eval=FALSE}
 # Grafico de barra basica
 metricas_tab %>% 
-mutate(class_prop = (ca/160264)*100) %>% 
+mutate(class_prop = pland) %>% 
 ggplot(aes(x = classe_descricao, y = class_prop)) +
 geom_col()
 
@@ -719,7 +738,7 @@ geom_col()
 # Corrigindo texto dos eixos.
 # Mudar posição da leganda para o texto com nomes longas encaixar.
 metricas_tab %>% 
-mutate(class_prop = (ca/160264)*100) %>% 
+mutate(class_prop = pland) %>% 
 ggplot(aes(x = type_class, y = class_prop, 
 fill = classe_descricao)) + 
 scale_fill_manual("classe", values = classe_cores) +
@@ -772,5 +791,57 @@ x = "") +
 theme(legend.position="bottom") + 
 guides(col = guide_legend(nrow = 4)) 
 
+```
+
+# Anos
+
+Calcular as métricas para 3 anos
+```{r}
+# metricas desejados
+what_metricas <- c("lsm_c_pland", "lsm_c_lpi", "lsm_c_area_mn", "lsm_c_area_sd", 
+                   "lsm_c_ai", "lsm_c_cohesion", "lsm_c_np", "lsm_c_pd")
+# rodar
+metricas_anos <- sample_lsm(landscape = mapbiomas_85a20, 
+                            y = acesso_buffers,
+                           plot_id = data.frame(acesso_buffers)[, 'raio_km'],
+                             what = what_metricas, 
+                           edge_depth = 1)
+
+# Organizar dados
+# Dados rferentes os buffers
+resultados_anos <- acesso_buffers %>% 
+  left_join(metricas_anos %>%
+              dplyr::mutate(value = round(value,2), 
+         ano = case_when(layer==1 ~1985, 
+                         layer==2~2003, 
+                         layer==3~2020)) %>%
+              dplyr::select(ano, plot_id, class, metric, value), 
+            by=c("raio_km"="plot_id"))
+# Dados referentes os classes
+resultados_anos <- resultados_anos %>%
+left_join(class_nomes, by = c("class" = "aid"))
+```
+
+Agora grafico de barra com varios anos
+
+```{r}
+# It's recommended to use a named vector
+# Legenda nomes ordem alfabetica
+classe_cores <- c("Campo Alagado e Área Pantanosa" = "#45C2A5", 
+"Formação Campestre" = "#B8AF4F", 
+"Formação Florestal" = "#006400", 
+"Formação Savânica" = "#00ff00", 
+"Mineração" = "#af2a2a", 
+"Pastagem" = "#FFD966", 
+"Rio, Lago e Oceano" = "#0000FF",
+"Outras Lavouras Temporárias" = "#e787f8") 
+
+resultados_anos %>% 
+  mutate(rcor = paste("#", hexadecimal_code, sep="")) %>% 
+  filter(metric=="pland") %>%
+  ggplot(aes(x=ano, y=value)) + 
+  geom_col(position="stack", aes(fill=classe_descricao)) + 
+  scale_fill_manual(values = classe_cores) +
+  facet_grid(raio_km~type_class)
 ```
 
