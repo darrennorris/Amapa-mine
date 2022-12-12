@@ -120,6 +120,7 @@ library(landscapemetrics)
 library(mapview)
 library(knitr) 
 library(kableExtra)
+library(gridExtra)
 ```
 
 
@@ -278,6 +279,7 @@ r_20 <- "data/raster/Mapbiomas_cover_lourenco_utm/utm_cover_AP_lorenco_2020.tif"
 # combinação com os 3 arquivos para juntar 3 anos
 r_85a20 <- c(r_85, r_03, r_20)
 mapbiomas_85a20 <- rast(r_85a20)
+gc()
 ```
 
 Agora que o arquivo foi importado, podemos visualizá- lo.
@@ -320,6 +322,10 @@ area.total #160264 Hectares
 ```
 Agora vamos ver a distância total de borda (te= “total
 edge”).
+
+```{r, echo = FALSE}
+gc()
+```
 
 ```{r, warning = FALSE}
 te <- lsm_l_te(r1985)
@@ -845,3 +851,64 @@ resultados_anos %>%
   facet_grid(raio_km~type_class)
 ```
 
+Agora com "pland" e densidade de manchas juntos
+
+```{r}
+
+resultados_anos %>% 
+  mutate(rcor = paste("#", hexadecimal_code, sep="")) %>% 
+  filter(metric=="pland") %>%
+  ggplot(aes(x=ano, y=value)) + 
+  geom_col(position="stack", aes(fill=classe_descricao)) + 
+  scale_fill_manual("classe", values = classe_cores) +
+  scale_y_continuous(breaks=c(0,50,100)) + 
+  scale_x_continuous(breaks=c(1985,2003, 2020)) +
+  facet_grid(raio_km~type_class) + 
+  labs(title = "MapBiomas cobertura da terra", 
+subtitle = "Entorno do Garimpo do Lorenço 1985-2020",
+y = "Porcentagem da paisagem", 
+x = "Ano") + 
+theme(legend.position="bottom", 
+      legend.title = element_text(size = 3), 
+              legend.text  = element_text(size = 3),
+              legend.key.size = unit(0.1, "lines")) + 
+guides(fill = guide_legend(nrow = 4)) -> fig_pland
+
+# Densidade de manchas
+resultados_anos %>% 
+  mutate(rcor = paste("#", hexadecimal_code, sep="")) %>% 
+  filter(metric=="pd") %>%
+ggplot(aes(x = factor(ano), y = value)) + 
+geom_boxplot(colour = "grey50") + 
+geom_point(aes(colour = classe_descricao)) + 
+scale_color_manual("classe", values = classe_cores) +
+scale_size(guide = "none") + 
+facet_grid(raio_km~type_class) +
+labs(title = "MapBiomas cobertura da terra", 
+subtitle = "Entorno do Garimpo do Lorenço 1985-2020",
+y = "Densidade de manchas (número por 100 hectares)", 
+x = "Ano") + 
+theme(legend.position="bottom", 
+      legend.title = element_text(size = 3), 
+              legend.text  = element_text(size = 3),
+              legend.key.size = unit(0.1, "lines")) + 
+guides(fill = guide_legend(nrow = 4)) -> fig_pd
+
+grid.arrange(fig_pland, fig_pd, nrow=1)
+
+```
+
+
+
+
+# Conclusões e próximos passos
+
+Os resultados apresentados na figura anterior não segam os resultados esperados que a cobertura de classes antrópicos ia aumentar ao longo do tempo.
+Para entender melhor os padores, precisamos: 
+
+ * Verficar padrões nas outras metricas calculados
+ * Verficar padrões com mais anos 
+ * Verficar padrões usando poligonos/pontos dos processos de mineração (dados no SIGMINE https://www.gov.br/anm/pt-br e https://app.anm.gov.br/dadosabertos/SIGMINE/PROCESSOS_MINERARIOS/) 
+ 
+ 
+Alem disso, seria relevante buscar complementar os dados de MapBiomas com uma classificação supervisionado usando imagens de Sentinel-2 (exemplo com QGIS Semi-Automatic Classification plugin  aqui: https://fromgistors.blogspot.com/2016/09/basic-tutorial-2.html). Assim para aumentar a precisão dos resultados.
