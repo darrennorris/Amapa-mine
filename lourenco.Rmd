@@ -799,9 +799,9 @@ guides(col = guide_legend(nrow = 4))
 
 ```
 
-# Anos
+# Comparação entre anos
 
-Calcular as métricas para 3 anos
+Calcular as métricas para 3 anos.
 ```{r}
 # metricas desejados
 what_metricas <- c("lsm_c_pland", "lsm_c_lpi", "lsm_c_area_mn", "lsm_c_area_sd", 
@@ -851,7 +851,7 @@ resultados_anos %>%
   facet_grid(raio_km~type_class)
 ```
 
-Agora com "pland" e densidade de manchas juntos
+Agora com "pland" e densidade de manchas juntos.
 
 ```{r}
 
