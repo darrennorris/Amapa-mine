@@ -912,3 +912,11 @@ Para entender melhor os padores, precisamos:
  
  
 Alem disso, seria relevante buscar complementar os dados de MapBiomas com uma classificação supervisionado usando imagens de Sentinel-2 (exemplo com QGIS Semi-Automatic Classification plugin  aqui: https://fromgistors.blogspot.com/2016/09/basic-tutorial-2.html). Assim para aumentar a precisão dos resultados.
+
+Uma forma alternativa de visualização entre anos seria um diagrama "Sankey"/"Alluvial". Como exemplo, veja figura 3 no artigo "Rapid land use conversion in the Cerrado has affected water transparency in a hotspot of ecotourism, Bonito, Brazil" https://doi.org/10.1177/194008292211270 . 
+No R pode fazer com o pacote "networkD3" segue tutoriais: 
+https://www.displayr.com/sankey-diagrams-r/
+e
+https://epirhandbook.com/en/diagrams-and-charts.html#alluvialsankey-diagrams
+e
+https://rpubs.com/droach/CPP526-codethrough
