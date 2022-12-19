@@ -1,7 +1,7 @@
 ---
 title: "Garimpo do Lorenço"
 author: "Darren Norris"
-date: "2022-12-06"
+date: "`r Sys.setlocale('LC_TIME', 'Portuguese'); format(Sys.time(), '%d %B, %Y')`"
 output:
   bookdown::html_document2:
     toc: yes
@@ -51,7 +51,7 @@ As métricas de paisagem são a forma que os ecólogos de paisagem usam
 para descrever os padrões espaciais de paisagens para depois avaliar 
 a influência destes padrões espaciais nos padrões e processos ecológicos. 
 
-Nesta exemplo (versão atualizada aqui: https://rpubs.com/darren75/lourenco) aprenderemos sobre como analisar a cobertura da terra com métricas de paisagem em R.
+Nesta exemplo (https://rpubs.com/darren75/lourenco) aprenderemos sobre como analisar a cobertura da terra com métricas de paisagem em R.
 
 Este exemplo tem como base teórica o modelo 
 "mancha-corredor-matriz" - uma representação da paisagem em manchas 
@@ -913,10 +913,16 @@ Para entender melhor os padores, precisamos:
  
 Alem disso, seria relevante buscar complementar os dados de MapBiomas com uma classificação supervisionado usando imagens de Sentinel-2 (exemplo com QGIS Semi-Automatic Classification plugin  aqui: https://fromgistors.blogspot.com/2016/09/basic-tutorial-2.html). Assim para aumentar a precisão dos resultados.
 
-Uma forma alternativa de visualização entre anos seria um diagrama "Sankey"/"Alluvial". Como exemplo, veja figura 3 no artigo "Rapid land use conversion in the Cerrado has affected water transparency in a hotspot of ecotourism, Bonito, Brazil" https://doi.org/10.1177/194008292211270 . 
+Uma forma alternativa para visualização as mudanças entre anos seria um diagrama "Sankey"/"Alluvial". Como exemplo, veja figura 3 no artigo "Rapid land use conversion in the Cerrado has affected water transparency in a hotspot of ecotourism, Bonito, Brazil" https://doi.org/10.1177/19400829221127087 . 
+
+```{r plot-fig-sankey, echo=FALSE, warning=FALSE, message=FALSE, out.width="50%", out.height="50%", fig.align='center',fig.cap= "Diagrama Sankey mostrando a mudança de uso da terra na bacia do rio Prata entre 2010 (lado esquerdo) e 2020 (lado direto). Fonte: Figura 3. Chiaravalloti et. al. 2022. Tropical Conservation Science. doi:10.1177/19400829221127087"}
+knitr::include_graphics("figures/www/images_large_10.1177_19400829221127087-fig3.jpeg")
+```
+
 No R pode fazer com o pacote "networkD3" segue tutoriais: 
-https://www.displayr.com/sankey-diagrams-r/
-e
-https://epirhandbook.com/en/diagrams-and-charts.html#alluvialsankey-diagrams
-e
-https://rpubs.com/droach/CPP526-codethrough
+
+* https://www.displayr.com/sankey-diagrams-r/
+
+* https://epirhandbook.com/en/diagrams-and-charts.html#alluvialsankey-diagrams
+
+* https://rpubs.com/droach/CPP526-codethrough
