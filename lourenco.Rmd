@@ -8,10 +8,14 @@ output:
     toc_depth: 3
     toc_float: yes
     fig_caption: yes
+    highlight: tango
+    includes: 
+      in_header: _bookdown.yml
   bookdown::pdf_document2:
     toc: yes
     toc_depth: 3
     number_sections: yes
+    dev: "cairo_pdf"
     extra_dependencies: flafter
     highlight: tango
     includes:
@@ -33,7 +37,10 @@ knit_hooks$set(output = function(x, options) {
   out <- def_hook(x, options)
   return(paste("\\begin{framed}\\begin{verbatim}", x, "\\end{verbatim}\\end{framed}", collapse = "\n"))
 })
+knitr.table.format = "latex"
 ```
+
+\newpage{}
 
 # Apresentação
 Mudanças na paisagem ao redor do Garimpo do Lourenço. 
@@ -590,6 +597,9 @@ filter(metric %in% met_todos) %>%
 left_join(class_nomes, by = c("class" = "aid")) -> metricas_nomes
 ```
 
+\newpage
+
+
 # Uma tabela versatil
 Mas, ainda não tem uma coluna com os nomes das métricas. 
 Portanto, solução simples é de exportar no formato de .csv e 
@@ -622,11 +632,13 @@ pivot_wider(names_from = metric, values_from = value) -> metricas_tab
 ```
 
 
+\newpage
+
 ## 2. Montar a tabela
 Agora vamos produzir uma tabela simples e exportar em um formato 
 versatil (html) para finalização no Word / Excel.
 
-```{r}
+```{r, eval=FALSE}
 # Nomes para as colunas 
 col_nomes <- c("Tipo", "Descrição","Área total", "Índice maior mancha", 
 "Número de manchas", "Área manchas (médio)", "Área manchas (DP)", 
@@ -644,6 +656,26 @@ kable(col.names = col_nomes,
 digits = meu_digits) %>% 
 kableExtra::kable_styling() #visualizar para verificar
 ```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Nomes para as colunas 
+col_nomes <- c("Tipo", "Descrição","Área total", "Índice maior mancha", 
+"Número de manchas", "Área manchas (médio)", "Área manchas (DP)", 
+"Índice de agregação", "Índice de coesão", "Densidade de manchas")
+
+# Valores para pontos decimais de cada coluna.
+meu_digits <- c(0, 0, 0, 1, 0, 1, 1, 1, 1, 2)
+
+metricas_tab %>% 
+# Colocar as colunas na sequência desejada. 
+select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
+ai, cohesion, pd) %>% 
+# Especificar nomes para as colunas.
+kable(col.names = col_nomes, 
+digits = meu_digits) %>% 
+kableExtra::kable_styling(latex_options = c("HOLD_position", "striped", "scale_down")) #visualizar para verificar
+```
+
 
 Parece um bom começo. Vamos exportar. Depois, pode finalizar no 
 documento você está escrevendo (inserir -> objeto, e depois segue os 
@@ -663,7 +695,8 @@ kableExtra::kable_styling() %>%
 kableExtra::save_kable("tabela_metricas_1985.html")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+# save kable cant "read generated pdf file".....
 metricas_tab %>% 
 # Colocar as colunas na sequência desejada. 
 select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
@@ -672,7 +705,9 @@ ai, cohesion, pd) %>%
 kable(col.names = col_nomes, 
 digits = meu_digits) %>% 
 kableExtra::kable_styling() %>% 
-kableExtra::save_kable("data/tabela_metricas_1985.html")
+kableExtra::save_kable("data/tabela_metricas_1985.html", keep_tex = TRUE)
+# Use below to add necessary dependencies to compile pdf
+# tinytex::xelatex("data/tabela_metricas_1985.tex")
 ```
 
 E agora pode finalizar a tabela "tabela_metricas_1985.html" 
@@ -898,8 +933,7 @@ grid.arrange(fig_pland, fig_pd, nrow=1)
 
 ```
 
-
-
+\newpage
 
 # Conclusões e próximos passos
 
