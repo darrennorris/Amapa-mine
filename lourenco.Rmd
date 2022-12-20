@@ -3,14 +3,6 @@ title: "Garimpo do Lorenço"
 author: "Darren Norris"
 date: "`r Sys.setlocale('LC_TIME', 'Portuguese'); format(Sys.time(), '%d %B, %Y')`"
 output:
-  bookdown::html_document2:
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
-    fig_caption: yes
-    highlight: tango
-    includes: 
-      in_header: _bookdown.yml
   bookdown::pdf_document2:
     toc: yes
     toc_depth: 3
@@ -20,6 +12,14 @@ output:
     highlight: tango
     includes:
       in_header: preamble.txe
+  bookdown::html_document2:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    fig_caption: yes
+    highlight: tango
+    includes: 
+      in_header: _bookdown.yml
 urlcolor: blue
 toc-title: Sumário
 header-includes:
@@ -657,6 +657,8 @@ digits = meu_digits) %>%
 kableExtra::kable_styling() #visualizar para verificar
 ```
 
+
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Nomes para as colunas 
 col_nomes <- c("Tipo", "Descrição","Área total", "Índice maior mancha", 
@@ -696,7 +698,7 @@ kableExtra::save_kable("tabela_metricas_1985.html")
 ```
 
 ```{r, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-# save kable cant "read generated pdf file".....
+# save kable cant "read generated pdf file"..... how to just save a html when building latex (using save_kable_latex????
 metricas_tab %>% 
 # Colocar as colunas na sequência desejada. 
 select(type_class, classe_descricao, pland, lpi, np, area_mn, area_sd, 
@@ -704,7 +706,6 @@ ai, cohesion, pd) %>%
 # Especificar nomes para as colunas.
 kable(col.names = col_nomes, 
 digits = meu_digits) %>% 
-kableExtra::kable_styling() %>% 
 kableExtra::save_kable("data/tabela_metricas_1985.html", keep_tex = TRUE)
 # Use below to add necessary dependencies to compile pdf
 # tinytex::xelatex("data/tabela_metricas_1985.tex")
